@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Scoreboard
 {
@@ -33,6 +34,15 @@ namespace Scoreboard
                     throw new WebException("Could not reach the server. Status code: " + response.StatusCode);
                 }
                 return u;
+            }
+        }
+
+        public void addUser(User user) {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://77.175.219.85:9090");
+                client.PostAsJsonAsync("/scoreboard/api/users/test", user)
+                    .ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
             }
         }
     }
