@@ -141,6 +141,11 @@
     <Compile Include="GamesViewController.designer.cs">
       <DependentUpon>GamesViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameTableViewCell.cs" />
+    <Compile Include="GameTableViewCell.designer.cs">
+      <DependentUpon>GameTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Basketball_Field.png" />

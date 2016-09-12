@@ -1,16 +1,27 @@
 using Foundation;
 using System;
 using UIKit;
+using Scoreboard.communicator;
+using System.Collections.Generic;
+using Scoreboard.domain;
 
 namespace Scoreboard.iOS
 {
-    public partial class GamesViewController : UIViewController
-    {
-        public GamesViewController (IntPtr handle) : base (handle)
-        {
-        }
+	public partial class GamesViewController : UIViewController
+	{
+		List<Game> games
+		{
+			set
+			{
+				System.Diagnostics.Debug.WriteLine("Set datasource");
+				gameTableView.Source = new TableViewSource(value);
+				gameTableView.ReloadData();
+			}
+		}
 
-		public override void ViewDidLoad()
+        public GamesViewController (IntPtr handle) : base (handle) {}
+
+		public async override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -22,12 +33,12 @@ namespace Scoreboard.iOS
 			{
 				showRegisterViewController();
 			}
-				
-		}
 
-		partial void UIButton65_TouchUpInside(UIButton sender)
-		{
-			
+			games = await GameCall.GetAllGames();
+			//gameTableView.Source = new TableViewSource(games);
+
+
+				
 		}
 
 		public void showRegisterViewController()
@@ -37,4 +48,6 @@ namespace Scoreboard.iOS
 			PresentViewController(viewController, true, null);
 		}
 	}
+
+
 }

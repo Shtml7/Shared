@@ -18,6 +18,18 @@ namespace Scoreboard.iOS
 				return byteArray;
 			}
 		}
+
+		public static UIImage FromUrl(string uri)
+		{
+			using (var url = new NSUrl(uri))
+			{
+				System.Diagnostics.Debug.WriteLine("Going to download image from url: " + url);
+				using (var data = NSData.FromUrl(url))
+				{
+					return UIImage.LoadFromData(data);
+				}
+			}
+		}
 	}
 }
 
