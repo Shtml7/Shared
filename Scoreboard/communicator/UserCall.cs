@@ -41,45 +41,45 @@ namespace Scoreboard
 
 		public async void UploadImage(byte[] data, String ext, User user)
 		{
+			using (var client = new HttpClient()) {
+				client.BaseAddress = new Uri("http://localhost:8080/");
 
-			var client = new HttpClient();
-			client.BaseAddress = new Uri(baseUrl);
-
-			try
-			{
-				var multi = new MultipartFormDataContent();
-				var imageContent = new StreamContent(new MemoryStream(data));
-
-				if (ext.Equals("png"))
+				try
 				{
-					imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
+					var multi = new MultipartFormDataContent();
+					var imageContent = new StreamContent(new MemoryStream(data));
+
+					if (ext.Equals("png"))
+					{
+						imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
+					}
+					else if (ext.Equals("jpeg") || ext.Equals("jpg"))
+					{
+						imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+					}
+
+					multi.Add(imageContent, "file");
+					multi.Add(new StringContent(user.name), "name");
+					multi.Add(new StringContent(ext), "extension");
+
+					System.Diagnostics.Debug.WriteLine("Going to post now");
+					var response = await client.PostAsync("scoreboard/api/users/upload", multi);
+					response.EnsureSuccessStatusCode();
+
+					if (response.IsSuccessStatusCode)
+					{
+						var jsonstring = await response.Content.ReadAsStringAsync();
+						System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+					}
+
 				}
-				else if (ext.Equals("jpeg") || ext.Equals("jpg"))
+				catch (Exception ex)
 				{
-					imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-				}
-
-				multi.Add(imageContent, "file");
-				multi.Add(new StringContent(user.name), "name");
-				multi.Add(new StringContent(ext), "extension");
-
-				System.Diagnostics.Debug.WriteLine("Going to post now");
-				var response = await client.PostAsync("scoreboard/api/users/upload", multi);
-				response.EnsureSuccessStatusCode();
-
-				if (response.IsSuccessStatusCode)
-				{
-					var jsonstring = await response.Content.ReadAsStringAsync();
-					System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+					System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
 
 				}
-
 			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
-
-			}
+			
 		}
 
 		public static byte[] ReadFully(Stream input)

@@ -80,16 +80,19 @@ namespace Scoreboard.iOS
 					Console.WriteLine("got the original image");
 					imageView.Image = originalImage; // display
 
+					Byte[] myByteArray;
+					User user = new User();
+					user.name = "ericderegter";
 					using (NSData imageData = originalImage.AsPNG())
 					{
-						Byte[] myByteArray = new Byte[imageData.Length];
+						myByteArray = new Byte[imageData.Length];
 						System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, myByteArray, 0, Convert.ToInt32(imageData.Length));
 						//Do something with the byte array
-						UserCall call = new UserCall();
-						User user = new User();
-						user.name = "ericderegter";
-						call.UploadImage(myByteArray, "png", user);
+						System.Diagnostics.Debug.WriteLine("Making a byte array");
+
 					}
+					UserCall call = new UserCall();
+					call.UploadImage(myByteArray, "png", user);
 				}
 			}
 			else { // if it's a video
