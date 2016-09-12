@@ -21,7 +21,7 @@ namespace Scoreboard.communicator
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("api/games");
+                HttpResponseMessage response = await client.GetAsync("scoreboard/api/games");
                 List<Game> games = null;
                 if (response.IsSuccessStatusCode)
                 {
