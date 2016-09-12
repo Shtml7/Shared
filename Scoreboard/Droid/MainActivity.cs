@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Scoreboard;
 using Android.Graphics.Drawables;
+using Java.IO;
+using Android.Graphics;
+using System.IO;
 
 namespace Scoreboard.Droid
 {
@@ -18,6 +21,9 @@ namespace Scoreboard.Droid
 			"Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
 			"Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
         EditText userInput;
+        ImageView imageView;
+        Button imageBtn;
+        Stream imageStream;
 
         protected async override void OnCreate(Bundle bundle)
         {
@@ -81,6 +87,15 @@ namespace Scoreboard.Droid
             alertDialogBuilder.SetTitle("Username");
 
             userInput = (EditText)promptsView.FindViewById(Resource.Id.dialogText);
+            imageView = (ImageView)promptsView.FindViewById(Resource.Id.imageView);
+            imageBtn = (Button)promptsView.FindViewById(Resource.Id.imageBtn);
+
+            imageBtn.Click += delegate {
+                Intent = new Intent();
+                Intent.SetType("image/*");
+                Intent.SetAction(Intent.ActionGetContent);
+                StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), 1000);
+            };
 
             // set dialog message
             alertDialogBuilder
@@ -111,7 +126,31 @@ namespace Scoreboard.Droid
             user.name = userInput.Text;
 
             UserCall call = new UserCall();
-            call.addUser(user);
+            byte[] image = ReadFully(imageStream);
+
+            Toast.MakeText(this, image + " Clicked!", ToastLength.Long).Show();
+            call.UploadImage(image, "png", user);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if ((requestCode == 1000) && (resultCode == Result.Ok) && (data != null))
+            {
+                Android.Net.Uri imageUri = data.Data;
+                imageStream = ContentResolver.OpenInputStream(imageUri);
+                imageView.SetImageURI(imageUri);
+            }
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
         }
     }
 }

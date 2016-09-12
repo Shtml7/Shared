@@ -11,4 +11,14 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/dialogText"
         p1:layout_marginBottom="0.0dp" />
+
+<Button  
+    p1:id="@+id/imageBtn"
+    p1:layout_width="fill_parent"
+    p1:layout_height="wrap_content"
+    p1:text="Pick an image from the gallery"/>
+ <ImageView
+    p1:id="@+id/imageView"
+    p1:layout_width="200px"
+    p1:layout_height="200px"/>
 </LinearLayout>

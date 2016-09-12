@@ -32,7 +32,7 @@ namespace Scoreboard
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("Something went wrong with the API call. Status code: " + response.StatusCode);
+                    System.Diagnostics.Debug.WriteLine("Something went wrong with the API call. Status code: " + response.StatusCode);                    
                     throw new WebException("Could not reach the server. Status code: " + response.StatusCode);
                 }
                 return u;
