@@ -11,15 +11,16 @@ using Android.Graphics.Drawables;
 using Java.IO;
 using Android.Graphics;
 using System.IO;
+using Scoreboard.domain;
+using Scoreboard.communicator;
+using System.Collections.Generic;
 
 namespace Scoreboard.Droid
 {
 	[Activity (Label = "Scoreboard.Droid", MainLauncher = true)]
 	public class MainActivity : Activity
 	{
-        static String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-			"Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-			"Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
+        List<Game> games;
         EditText userInput;
         ImageView imageView;
         Button imageBtn;
@@ -35,14 +36,15 @@ namespace Scoreboard.Droid
             // Our code will go here
             //EditText text = FindViewById<EditText>(Resource.Id.text);
 			User u = await UserCall.getUser();
-            //text.Text = u.name;
+            games = new List<Game>();
+            games = await GameCall.GetAllGames();
 
-            ListView games = FindViewById<ListView>(Resource.Id.games);
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Resource.Layout.listAdapter, FRUITS);
+            ListView listViewGames = FindViewById<ListView>(Resource.Id.games);
+            
             // Assign adapter to ListView
-            games.Adapter = adapter;
+            listViewGames.Adapter = new GameAdapter(this, games);
 
-            games.ItemClick += listView_ItemClick;
+            listViewGames.ItemClick += listView_ItemClick;
 
 
             Button gamesBtn = FindViewById<Button>(Resource.Id.button1);
@@ -55,7 +57,7 @@ namespace Scoreboard.Droid
                 leaderboardBtn.SetBackgroundResource(Resource.Color.white);
                 gamesBtn.SetBackgroundResource(Resource.Color.green);
                 profileBtn.SetBackgroundResource(Resource.Color.white);
-                games.Visibility = ViewStates.Visible;
+                listViewGames.Visibility = ViewStates.Visible;
             };
 
             
@@ -64,7 +66,7 @@ namespace Scoreboard.Droid
                 leaderboardBtn.SetBackgroundResource(Resource.Color.green);
                 gamesBtn.SetBackgroundResource(Resource.Color.white);
                 profileBtn.SetBackgroundResource(Resource.Color.white);
-                games.Visibility = ViewStates.Invisible;
+                listViewGames.Visibility = ViewStates.Invisible;
             };
 
             profileBtn.Click += (object sender, EventArgs e) =>
@@ -72,7 +74,7 @@ namespace Scoreboard.Droid
                 profileBtn.SetBackgroundResource(Resource.Color.green);
                 gamesBtn.SetBackgroundResource(Resource.Color.white);
                 leaderboardBtn.SetBackgroundResource(Resource.Color.white);
-                games.Visibility = ViewStates.Invisible;
+                listViewGames.Visibility = ViewStates.Invisible;
             };
 
             LayoutInflater li = LayoutInflater.From(this);
@@ -111,10 +113,10 @@ namespace Scoreboard.Droid
         private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             //Get our item from the list adapter
-            string fruit = FRUITS[e.Position];
+            Game game = games[e.Position];
 
             //Make a toast with the item name just to show it was clicked
-            Toast.MakeText(this, fruit + " Clicked!", ToastLength.Short).Show();
+            Toast.MakeText(this, game.id + " Clicked!", ToastLength.Short).Show();
         }
 
         void HandleTouchUpInside(object sender, EventArgs ea)

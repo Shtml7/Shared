@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Scoreboard.domain
 {
-    class Team
+    public class Team
     {
-        private long id { get; set; }
-        private User player1 { get; set; }
-        private User player2 { get; set; }
-        private int score { get; set; }
+        public long id { get; set; }
+        public User player1 { get; set; }
+        public User player2 { get; set; }
+        public int score { get; set; }
     }
 }

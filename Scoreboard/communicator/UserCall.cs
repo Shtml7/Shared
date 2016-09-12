@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Media.Abstractions;
 using Splat;
+using System.Collections.Generic;
+using Scoreboard.domain;
 
 namespace Scoreboard
 {
@@ -82,7 +84,7 @@ namespace Scoreboard
 			
 		}
 
-		public static byte[] ReadFully(Stream input)
+        public static byte[] ReadFully(Stream input)
 		{
 			byte[] buffer = new byte[16 * 1024];
 			using (MemoryStream ms = new MemoryStream())
