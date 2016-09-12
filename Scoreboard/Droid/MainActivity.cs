@@ -121,14 +121,10 @@ namespace Scoreboard.Droid
 
         void HandleTouchUpInside(object sender, EventArgs ea)
         {
-            Toast.MakeText(this, userInput.Text + " Clicked!", ToastLength.Short).Show();
             User user = new User();
             user.name = userInput.Text;
-
             UserCall call = new UserCall();
             byte[] image = ReadFully(imageStream);
-
-            Toast.MakeText(this, image + " Clicked!", ToastLength.Long).Show();
             call.UploadImage(image, "png", user);
         }
 
