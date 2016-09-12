@@ -118,7 +118,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="GamesViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -129,6 +128,11 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Util\IOSImageUtil.cs" />
+    <Compile Include="RegisterModalViewController.cs" />
+    <Compile Include="RegisterModalViewController.designer.cs">
+      <DependentUpon>RegisterModalViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
@@ -137,7 +141,6 @@
     <Compile Include="GamesViewController.designer.cs">
       <DependentUpon>GamesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\IOSImageUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Basketball_Field.png" />
@@ -146,10 +149,10 @@
     <BundleResource Include="Resources\Leaderboard%402x.png" />
     <BundleResource Include="Resources\User.png" />
     <BundleResource Include="Resources\User%402x.png" />
+    <BundleResource Include="Resources\noImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

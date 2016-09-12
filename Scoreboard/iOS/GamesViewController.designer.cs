@@ -14,6 +14,10 @@ namespace Scoreboard.iOS
     [Register ("GamesViewController")]
     partial class GamesViewController
     {
+        [Action ("UIButton65_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UIButton65_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }

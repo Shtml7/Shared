@@ -1,27 +1,40 @@
-﻿using System;
-
+using Foundation;
+using System;
 using UIKit;
 
 namespace Scoreboard.iOS
 {
-	public partial class GamesViewController : UIViewController
-	{
-		public GamesViewController() : base("GamesViewController", null)
-		{
-		}
+    public partial class GamesViewController : UIViewController
+    {
+        public GamesViewController (IntPtr handle) : base (handle)
+        {
+        }
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-			// Perform any additional setup after loading the view, typically from a nib.
+
+			//check if user is a first time user
+			var plist = NSUserDefaults.StandardUserDefaults;
+			var username = plist.StringForKey("username");
+			System.Diagnostics.Debug.WriteLine("Username: " + username);
+			if (username == null)
+			{
+				showRegisterViewController();
+			}
+				
 		}
 
-		public override void DidReceiveMemoryWarning()
+		partial void UIButton65_TouchUpInside(UIButton sender)
 		{
-			base.DidReceiveMemoryWarning();
-			// Release any cached data, images, etc that aren't in use.
+			
+		}
+
+		public void showRegisterViewController()
+		{
+			UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
+			RegisterModalViewController viewController = storyboard.InstantiateViewController("registerModalViewController") as RegisterModalViewController;
+			PresentViewController(viewController, true, null);
 		}
 	}
 }
-
-

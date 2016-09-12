@@ -5,13 +5,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Plugin.Media.Abstractions;
-using Splat;
-using System.Collections.Generic;
-using Scoreboard.domain;
-using Android.Graphics;
-using Java.IO;
-using Java.Net;
 
 namespace Scoreboard
 {

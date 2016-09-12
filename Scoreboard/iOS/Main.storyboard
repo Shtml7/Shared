@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="35">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
     </dependencies>
@@ -81,7 +81,7 @@
         </scene>
         <scene sceneID="40">
             <objects>
-                <viewController id="37" sceneMemberID="viewController">
+                <viewController id="37" sceneMemberID="viewController" customClass="GamesViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="32"/>
                         <viewControllerLayoutGuide type="bottom" id="33"/>
@@ -90,7 +90,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <subviews/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="65" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="UIButton65_TouchUpInside:" destination="37" id="69" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="66" firstItem="65" firstAttribute="centerY" secondItem="42" secondAttribute="centerY"/>
+                            <constraint id="67" firstItem="65" firstAttribute="centerX" secondItem="42" secondAttribute="centerX"/>
+                            <constraint id="68" firstItem="65" firstAttribute="centerY" secondItem="42" secondAttribute="centerY"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Current Games" id="41"/>
                 </viewController>
@@ -100,7 +115,7 @@
         </scene>
         <scene sceneID="50">
             <objects>
-                <viewController id="51" sceneMemberID="viewController">
+                <viewController id="51" sceneMemberID="viewController" customClass="RegisterModalViewController" storyboardIdentifier="registerModalViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="48"/>
                         <viewControllerLayoutGuide type="bottom" id="49"/>
@@ -109,7 +124,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="61" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="283" y="326" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Button_TouchUpInside:" destination="51" id="64" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <imageView contentMode="scaleToFill" id="110" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                <rect key="frame" x="225" y="83" width="150" height="150"/>
+                                <constraints>
+                                    <constraint id="113" firstItem="110" firstAttribute="height" constant="150"/>
+                                    <constraint id="114" firstItem="110" firstAttribute="width" constant="150"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="124" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" placeholder="Enter your name">
+                                <rect key="frame" x="200" y="273" width="200" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <constraints>
+                                    <constraint id="127" firstItem="124" firstAttribute="width" constant="200"/>
+                                </constraints>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" id="136" translatesAutoresizingMaskIntoConstraints="NO" text="ie">
+                                <rect key="frame" x="300" y="298" width="0.0" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="139" firstItem="136" firstAttribute="width"/>
+                                    <constraint id="140" firstItem="136" firstAttribute="height"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" id="141" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="225" y="306" width="150" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="143" firstItem="141" firstAttribute="height" constant="21"/>
+                                    <constraint id="144" firstItem="141" firstAttribute="width" constant="150"/>
+                                </constraints>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="111" firstItem="110" firstAttribute="centerX" secondItem="52" secondAttribute="centerX"/>
+                            <constraint id="112" firstItem="110" firstAttribute="top" secondItem="48" secondAttribute="bottom" constant="63"/>
+                            <constraint id="115" firstItem="61" firstAttribute="centerX" secondItem="52" secondAttribute="centerX"/>
+                            <constraint id="125" firstItem="124" firstAttribute="centerX" secondItem="52" secondAttribute="centerX"/>
+                            <constraint id="126" firstItem="124" firstAttribute="top" secondItem="110" secondAttribute="bottom" constant="40"/>
+                            <constraint id="137" firstItem="136" firstAttribute="centerX" secondItem="52" secondAttribute="centerX"/>
+                            <constraint id="138" firstItem="136" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="8"/>
+                            <constraint id="142" firstItem="141" firstAttribute="centerX" secondItem="52" secondAttribute="centerX"/>
+                            <constraint id="145" firstItem="141" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="16"/>
+                            <constraint id="176" firstItem="61" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="36"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="61" id="name-outlet-61"/>
+                        <outlet property="profileImage" destination="110" id="name-outlet-110"/>
+                        <outlet property="tfUsername" destination="124" id="name-outlet-124"/>
+                        <outlet property="lblWarning" destination="141" id="name-outlet-141"/>
+                        <outlet property="topImageConstraint" destination="112" id="name-outlet-112"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,5 +202,6 @@
         <image name="Basketball_Field.png" width="25" height="25"/>
         <image name="Leaderboard.png" width="25" height="25"/>
         <image name="User.png" width="25" height="25"/>
+        <image name="noImage.png" width="500" height="500"/>
     </resources>
 </document>
