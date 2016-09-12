@@ -14,6 +14,7 @@ using System.IO;
 using Scoreboard.domain;
 using Scoreboard.communicator;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Scoreboard.Droid
 {
@@ -117,6 +118,10 @@ namespace Scoreboard.Droid
 
             //Make a toast with the item name just to show it was clicked
             Toast.MakeText(this, game.id + " Clicked!", ToastLength.Short).Show();
+
+            var activity2 = new Intent(this, typeof(GameActivity));
+            activity2.PutExtra("game", JsonConvert.SerializeObject(game));
+            StartActivity(activity2);
         }
 
         void HandleTouchUpInside(object sender, EventArgs ea)

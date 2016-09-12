@@ -7,6 +7,7 @@ using Scoreboard;
 using Scoreboard.domain;
 using Scoreboard.Droid;
 using System.Collections.Generic;
+using System.Net;
 
 public class GameAdapter : BaseAdapter<Game>
 {
@@ -35,16 +36,29 @@ public class GameAdapter : BaseAdapter<Game>
         if (view == null) // otherwise create a new one
             view = context.LayoutInflater.Inflate(Resource.Layout.listAdapter, null);
         view.FindViewById<TextView>(Resource.Id.rowTextView).Text = games[position].team1.score + ":" + games[position].team2.score;
-        Uri imagePlayer1 = Uri.Parse(games[position].team1.player1.imageUrl);
-        Uri imagePlayer2 = Uri.Parse(games[position].team1.player2.imageUrl);
-        Uri imagePlayer3 = Uri.Parse(games[position].team2.player1.imageUrl);
-        Uri imagePlayer4 = Uri.Parse(games[position].team2.player2.imageUrl);
-        view.FindViewById<ImageView>(Resource.Id.rowImageView1).SetImageURI(imagePlayer1);
-        view.FindViewById<ImageView>(Resource.Id.rowImageView2).SetImageURI(imagePlayer2);
-        view.FindViewById<ImageView>(Resource.Id.rowImageView3).SetImageURI(imagePlayer3);
-        view.FindViewById<ImageView>(Resource.Id.rowImageView4).SetImageURI(imagePlayer4);
+        view.FindViewById<ImageView>(Resource.Id.rowImageView1).SetImageBitmap(GetImageBitmapFromUrl(games[position].team1.player1.imageUrl));
+        view.FindViewById<ImageView>(Resource.Id.rowImageView2).SetImageBitmap(GetImageBitmapFromUrl(games[position].team1.player2.imageUrl));
+        view.FindViewById<ImageView>(Resource.Id.rowImageView3).SetImageBitmap(GetImageBitmapFromUrl(games[position].team2.player1.imageUrl));
+        view.FindViewById<ImageView>(Resource.Id.rowImageView4).SetImageBitmap(GetImageBitmapFromUrl(games[position].team2.player2.imageUrl));
         return view;
     }
 
-   
+    private Bitmap GetImageBitmapFromUrl(string url)
+    {
+        Bitmap imageBitmap = null;
+
+        using (var webClient = new WebClient())
+        {
+            var imageBytes = webClient.DownloadData(url);
+            if (imageBytes != null && imageBytes.Length > 0)
+            {
+                imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+            }
+        }
+
+        return imageBitmap;
+    }
+
+
+
 }
