@@ -9,6 +9,9 @@ using Plugin.Media.Abstractions;
 using Splat;
 using System.Collections.Generic;
 using Scoreboard.domain;
+using Android.Graphics;
+using Java.IO;
+using Java.Net;
 
 namespace Scoreboard
 {
@@ -96,6 +99,7 @@ namespace Scoreboard
 				}
 				return ms.ToArray();
 			}
-		}
+		}       
+        
     }
 }

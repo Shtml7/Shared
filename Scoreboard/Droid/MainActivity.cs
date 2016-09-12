@@ -121,10 +121,13 @@ namespace Scoreboard.Droid
 
         void HandleTouchUpInside(object sender, EventArgs ea)
         {
-            User user = new User();
-            user.name = userInput.Text;
-            byte[] image = ReadFully(imageStream);
-			UserCall.UploadImage(image, "jpg", user);
+            if (userInput.Text != "")
+            {
+                User user = new User();
+                user.name = userInput.Text;
+                byte[] image = ReadFully(imageStream);
+                UserCall.UploadImage(image, "jpg", user);
+            }
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
