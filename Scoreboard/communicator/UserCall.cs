@@ -10,11 +10,11 @@ using Splat;
 
 namespace Scoreboard
 {
-    public class UserCall
+    public static class UserCall
     {
         private static string baseUrl = "http://77.175.219.85:9090/";
 
-        public async Task<User> getUser()
+        public static async Task<User> getUser()
         {
             using (var client = new HttpClient())
             {
@@ -39,10 +39,10 @@ namespace Scoreboard
             }
         }
 
-		public async void UploadImage(byte[] data, String ext, User user)
+		public static async void UploadImage(byte[] data, String ext, User user)
 		{
 			using (var client = new HttpClient()) {
-				client.BaseAddress = new Uri("http://localhost:8080/");
+				client.BaseAddress = new Uri(baseUrl);
 
 				try
 				{

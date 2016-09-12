@@ -27,8 +27,6 @@ namespace Scoreboard.Droid
 
         protected async override void OnCreate(Bundle bundle)
         {
-            MyClass clas = new MyClass();
-            UserCall call = new UserCall();
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -36,7 +34,7 @@ namespace Scoreboard.Droid
 
             // Our code will go here
             //EditText text = FindViewById<EditText>(Resource.Id.text);
-            User u = await call.getUser();
+			User u = await UserCall.getUser();
             //text.Text = u.name;
 
             ListView games = FindViewById<ListView>(Resource.Id.games);
@@ -123,9 +121,8 @@ namespace Scoreboard.Droid
         {
             User user = new User();
             user.name = userInput.Text;
-            UserCall call = new UserCall();
             byte[] image = ReadFully(imageStream);
-            call.UploadImage(image, "png", user);
+			UserCall.UploadImage(image, "jpg", user);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
