@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Scoreboard
 {
@@ -12,7 +13,7 @@ namespace Scoreboard
     {
         private static string baseUrl = "http://77.175.219.85:9090/";
 
-        public static async Task<User> getUser()
+        public static async Task<List<User>> getUsers()
         {
             using (var client = new HttpClient())
             {
@@ -20,13 +21,13 @@ namespace Scoreboard
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-				HttpResponseMessage response = await client.GetAsync("scoreboard/api/users/test");
-                User u = null;
+				HttpResponseMessage response = await client.GetAsync("scoreboard/api/users");
+                List<User> u = null;
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonResponse = await response.Content.ReadAsStringAsync();
                     System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
-                    u = JsonConvert.DeserializeObject<User>(jsonResponse);
+                    u = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
                 }
                 else
                 {

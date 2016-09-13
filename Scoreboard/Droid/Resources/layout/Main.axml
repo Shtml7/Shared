@@ -42,5 +42,13 @@
         p1:layout_width="wrap_content"
         p1:layout_height="match_parent"
         p1:layout_marginTop="75px"
+        p1:layout_marginBottom="75px"
         p1:id="@+id/games" />
+  <Button
+            p1:text="New Game"
+            p1:layout_width="match_parent"
+            p1:layout_height="75px"
+            p1:id="@+id/newGameBtn"
+            p1:background="@android:color/background_light"
+            p1:textColor="@android:color/background_dark" />
 </RelativeLayout>

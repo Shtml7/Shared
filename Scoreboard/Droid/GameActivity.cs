@@ -10,6 +10,10 @@ using System.Net;
 [Activity(Label = "Scoreboard.Droid")]
 public class GameActivity : Activity
 {
+    Bitmap team1Player1;
+    Bitmap team1Player2;
+    Bitmap team2Player1;
+    Bitmap team2Player2;
     protected override void OnCreate(Bundle bundle)
     {
         base.OnCreate(bundle);
@@ -23,11 +27,28 @@ public class GameActivity : Activity
         
         Toast.MakeText(this, game.id + " Clicked!", ToastLength.Short).Show();
 
+        team1Player1 = GetImageBitmapFromUrl(game.team1.player1.imageUrl);
+        team1Player2 = GetImageBitmapFromUrl(game.team1.player2.imageUrl);
+        team2Player1 = GetImageBitmapFromUrl(game.team2.player1.imageUrl);
+        team2Player2 = GetImageBitmapFromUrl(game.team2.player2.imageUrl);
+
         FindViewById<TextView>(Resource.Id.gameTextView).Text = game.team1.score + ":" + game.team2.score;
-        FindViewById<ImageView>(Resource.Id.gameImageView1).SetImageBitmap(GetImageBitmapFromUrl(game.team1.player1.imageUrl));
-        FindViewById<ImageView>(Resource.Id.gameImageView2).SetImageBitmap(GetImageBitmapFromUrl(game.team1.player2.imageUrl));
-        FindViewById<ImageView>(Resource.Id.gameImageView3).SetImageBitmap(GetImageBitmapFromUrl(game.team2.player1.imageUrl));
-        FindViewById<ImageView>(Resource.Id.gameImageView4).SetImageBitmap(GetImageBitmapFromUrl(game.team2.player2.imageUrl));
+        FindViewById<ImageView>(Resource.Id.gameImageView1).SetImageBitmap(team1Player1);
+        FindViewById<ImageView>(Resource.Id.gameImageView2).SetImageBitmap(team1Player2);
+        FindViewById<ImageView>(Resource.Id.gameImageView3).SetImageBitmap(team2Player1);
+        FindViewById<ImageView>(Resource.Id.gameImageView4).SetImageBitmap(team2Player2);
+
+        FindViewById<ImageView>(Resource.Id.team1Player1Image).SetImageBitmap(team1Player1);
+        FindViewById<TextView>(Resource.Id.team1Player1Text).Text = game.team1.player1.name;
+
+        FindViewById<ImageView>(Resource.Id.team1Player2Image).SetImageBitmap(team1Player2);
+        FindViewById<TextView>(Resource.Id.team1Player2Text).Text = game.team1.player2.name;
+
+        FindViewById<ImageView>(Resource.Id.team2Player1Image).SetImageBitmap(team2Player1);
+        FindViewById<TextView>(Resource.Id.team2Player1Text).Text = game.team2.player1.name;
+
+        FindViewById<ImageView>(Resource.Id.team2Player2Image).SetImageBitmap(team2Player2);
+        FindViewById<TextView>(Resource.Id.team2Player2Text).Text = game.team2.player2.name;
 
     }
 

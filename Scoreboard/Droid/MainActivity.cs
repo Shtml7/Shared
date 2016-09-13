@@ -36,7 +36,6 @@ namespace Scoreboard.Droid
 
             // Our code will go here
             //EditText text = FindViewById<EditText>(Resource.Id.text);
-			User u = await UserCall.getUser();
             games = new List<Game>();
             games = await GameCall.GetAllGames();
 
@@ -51,6 +50,7 @@ namespace Scoreboard.Droid
             Button gamesBtn = FindViewById<Button>(Resource.Id.button1);
             Button leaderboardBtn = FindViewById<Button>(Resource.Id.button2);
             Button profileBtn = FindViewById<Button>(Resource.Id.button3);
+            Button newGameBtn = FindViewById<Button>(Resource.Id.newGameBtn);
 
             gamesBtn.SetBackgroundResource(Resource.Color.green);
             gamesBtn.Click += (object sender, EventArgs e) =>
@@ -76,6 +76,12 @@ namespace Scoreboard.Droid
                 gamesBtn.SetBackgroundResource(Resource.Color.white);
                 leaderboardBtn.SetBackgroundResource(Resource.Color.white);
                 listViewGames.Visibility = ViewStates.Invisible;
+            };
+
+            newGameBtn.Click += (object sender, EventArgs e) =>
+            {
+                var activity = new Intent(this, typeof(NewGameActivity));
+                StartActivity(activity);
             };
 
             LayoutInflater li = LayoutInflater.From(this);

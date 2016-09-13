@@ -37,5 +37,34 @@ namespace Scoreboard.communicator
                 return games;
             }
         }
+
+        public static async void createGame(Game game)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+
+                try
+                {
+                    string gameJson = JsonConvert.SerializeObject(game);
+                    System.Diagnostics.Debug.WriteLine("Going to post now");
+                    var response = await client.PostAsync("scoreboard/api/games/create", new StringContent(gameJson));
+                    response.EnsureSuccessStatusCode();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonstring = await response.Content.ReadAsStringAsync();
+                        System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
+
+                }
+            }
+
+        }
     }
 }
