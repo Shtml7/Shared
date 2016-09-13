@@ -14,10 +14,16 @@ namespace Scoreboard.iOS
 			set
 			{
 				System.Diagnostics.Debug.WriteLine("Set datasource");
-				gameTableView.Source = new TableViewSource(value);
+				gameTableView.Source = new TableViewSource(value, this);
 				gameTableView.ReloadData();
 			}
 		}
+		public Game selectedGame;
+
+		public UIImage imgTeam1Player1;
+		public UIImage imgTeam1Player2;
+		public UIImage imgTeam2Player1;
+		public UIImage imgTeam2Player2;
 
         public GamesViewController (IntPtr handle) : base (handle) {}
 
@@ -25,7 +31,6 @@ namespace Scoreboard.iOS
 		{
 			base.ViewDidLoad();
 
-			//check if user is a first time user
 			var plist = NSUserDefaults.StandardUserDefaults;
 			var username = plist.StringForKey("username");
 			System.Diagnostics.Debug.WriteLine("Username: " + username);
@@ -35,10 +40,6 @@ namespace Scoreboard.iOS
 			}
 
 			games = await GameCall.GetAllGames();
-			//gameTableView.Source = new TableViewSource(games);
-
-
-				
 		}
 
 		public void showRegisterViewController()
@@ -46,6 +47,30 @@ namespace Scoreboard.iOS
 			UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
 			RegisterModalViewController viewController = storyboard.InstantiateViewController("registerModalViewController") as RegisterModalViewController;
 			PresentViewController(viewController, true, null);
+		}
+
+		//public void didSelectGame(Game game)
+		//{
+		//	this.selectedGame = game;
+		//}
+
+		public void goToDetailViewController()
+		{
+			PerformSegue("gameDetailSegue", this);
+		}
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue(segue, sender);
+			if (segue.Identifier == "gameDetailSegue" && selectedGame != null)
+			{
+				var gameDetailController = (GameDetailViewController)segue.DestinationViewController;
+				gameDetailController.game = this.selectedGame;
+				gameDetailController.team1Player1Image = imgTeam1Player1;
+				gameDetailController.team1Player2Image = imgTeam1Player2;
+				gameDetailController.team2Player1Image = imgTeam2Player1;
+				gameDetailController.team2Player2Image = imgTeam2Player2;
+			}
 		}
 	}
 

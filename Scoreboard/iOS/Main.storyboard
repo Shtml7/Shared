@@ -204,9 +204,10 @@
                             <constraint id="632" firstItem="447" firstAttribute="top" secondItem="42" secondAttribute="top"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Current Games" id="41"/>
+                    <navigationItem key="navigationItem" title="Now Playing" id="41"/>
                     <connections>
                         <outlet property="gameTableView" destination="447" id="name-outlet-447"/>
+                        <segue id="891" destination="709" kind="show" identifier="gameDetailSegue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -295,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="713"/>
+            <point key="canvasLocation" x="1378" y="1759"/>
         </scene>
         <scene sceneID="188">
             <objects>
@@ -352,6 +353,288 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="350" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="500" y="1480"/>
+        </scene>
+        <scene sceneID="708">
+            <objects>
+                <viewController id="709" sceneMemberID="viewController" customClass="GameDetailViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="706"/>
+                        <viewControllerLayoutGuide type="bottom" id="707"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="710">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="838" translatesAutoresizingMaskIntoConstraints="NO" showsVerticalScrollIndicator="NO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="687"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="791" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="797" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                                <rect key="frame" x="540" y="25" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint id="798" firstItem="797" firstAttribute="width" constant="50"/>
+                                                    <constraint id="799" firstItem="797" firstAttribute="height" constant="50"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="800" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                                <rect key="frame" x="506" y="25" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint id="801" firstItem="800" firstAttribute="width" constant="50"/>
+                                                    <constraint id="802" firstItem="800" firstAttribute="height" constant="50"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="803" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <rect key="frame" x="315" y="39.5" width="42" height="21"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <constraints>
+                                                    <constraint id="804" firstItem="803" firstAttribute="height" constant="21"/>
+                                                    <constraint id="805" firstItem="803" firstAttribute="width" constant="42"/>
+                                                </constraints>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=":" lineBreakMode="tailTruncation" minimumFontSize="10" id="806" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                                <rect key="frame" x="290" y="40" width="20" height="20.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <constraints>
+                                                    <constraint id="807" firstItem="806" firstAttribute="width" constant="20"/>
+                                                </constraints>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="808" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="right">
+                                                <rect key="frame" x="243" y="38" width="42" height="24"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <constraints>
+                                                    <constraint id="809" firstItem="808" firstAttribute="width" constant="42"/>
+                                                    <constraint id="810" firstItem="808" firstAttribute="height" constant="24"/>
+                                                </constraints>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="814" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                                <rect key="frame" x="20" y="25" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint id="815" firstItem="814" firstAttribute="width" constant="50"/>
+                                                    <constraint id="816" firstItem="814" firstAttribute="height" constant="50"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="811" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                                <rect key="frame" x="54" y="25" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint id="812" firstItem="811" firstAttribute="width" constant="50"/>
+                                                    <constraint id="813" firstItem="811" firstAttribute="height" constant="50"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint id="796" firstItem="791" firstAttribute="height" constant="100"/>
+                                            <constraint id="826" firstItem="811" firstAttribute="leading" secondItem="814" secondAttribute="centerX" constant="9"/>
+                                            <constraint id="827" firstItem="808" firstAttribute="leading" secondItem="811" secondAttribute="trailing" constant="10" priority="500"/>
+                                            <constraint id="828" firstItem="806" firstAttribute="leading" secondItem="808" secondAttribute="trailing" constant="5" priority="750"/>
+                                            <constraint id="829" firstItem="791" firstAttribute="centerX" secondItem="806" secondAttribute="centerX"/>
+                                            <constraint id="830" firstItem="800" firstAttribute="leading" secondItem="803" secondAttribute="trailing" constant="10" priority="500"/>
+                                            <constraint id="831" firstItem="797" firstAttribute="leading" secondItem="800" secondAttribute="centerX" constant="9"/>
+                                            <constraint id="833" firstItem="803" firstAttribute="leading" secondItem="806" secondAttribute="trailing" constant="5" priority="750"/>
+                                            <constraint id="899" firstItem="814" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="900" firstItem="811" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="901" firstItem="808" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="902" firstItem="806" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="903" firstItem="803" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="904" firstItem="800" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="905" firstItem="797" firstAttribute="centerY" secondItem="791" secondAttribute="centerY"/>
+                                            <constraint id="911" firstItem="814" firstAttribute="leading" secondItem="791" secondAttribute="leading" constant="20"/>
+                                            <constraint id="914" firstItem="791" firstAttribute="trailing" secondItem="797" secondAttribute="trailing" constant="10"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="918" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="100" width="600" height="1"/>
+                                        <constraints>
+                                            <constraint id="923" firstItem="918" firstAttribute="height" constant="1"/>
+                                        </constraints>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Team 1" lineBreakMode="tailTruncation" minimumFontSize="10" id="933" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="20" y="106" width="76" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="935" firstItem="933" firstAttribute="height" constant="21"/>
+                                            <constraint id="936" firstItem="933" firstAttribute="width" constant="76"/>
+                                        </constraints>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="938" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="132" width="600" height="1"/>
+                                        <constraints>
+                                            <constraint id="939" firstItem="938" firstAttribute="height" constant="1"/>
+                                        </constraints>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="943" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png" misplaced="YES">
+                                        <rect key="frame" x="20" y="152.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint id="944" firstItem="943" firstAttribute="width" constant="50"/>
+                                            <constraint id="945" firstItem="943" firstAttribute="height" constant="50"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="948" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png" misplaced="YES">
+                                        <rect key="frame" x="20" y="222.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint id="949" firstItem="948" firstAttribute="width" constant="50"/>
+                                            <constraint id="950" firstItem="948" firstAttribute="height" constant="50"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="953" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="90" y="167.5" width="42" height="20.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="960" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="90" y="237.5" width="42" height="20.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="972" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="282.5" width="600" height="1"/>
+                                        <subviews/>
+                                        <constraints>
+                                            <constraint id="973" firstItem="972" firstAttribute="height" constant="1"/>
+                                        </constraints>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="992" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="469.5" width="600" height="1"/>
+                                        <subviews/>
+                                        <constraints>
+                                            <constraint id="993" firstItem="992" firstAttribute="height" constant="1"/>
+                                        </constraints>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="994" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png" misplaced="YES">
+                                        <rect key="frame" x="20" y="409.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint id="995" firstItem="994" firstAttribute="width" constant="50"/>
+                                            <constraint id="996" firstItem="994" firstAttribute="height" constant="50"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="997" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="90" y="424.5" width="42" height="20.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="998" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="90" y="354.5" width="42" height="20.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="999" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png" misplaced="YES">
+                                        <rect key="frame" x="20" y="339.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint id="1000" firstItem="999" firstAttribute="width" constant="50"/>
+                                            <constraint id="1001" firstItem="999" firstAttribute="height" constant="50"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Team 2" lineBreakMode="tailTruncation" minimumFontSize="10" id="1002" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="20" y="293" width="76" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <constraints>
+                                            <constraint id="1003" firstItem="1002" firstAttribute="height" constant="21"/>
+                                            <constraint id="1004" firstItem="1002" firstAttribute="width" constant="76"/>
+                                        </constraints>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="1005" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="319" width="600" height="1"/>
+                                        <constraints>
+                                            <constraint id="1006" firstItem="1005" firstAttribute="height" constant="1"/>
+                                        </constraints>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="906" firstItem="791" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="907" firstItem="838" firstAttribute="trailing" secondItem="791" secondAttribute="trailing"/>
+                                    <constraint id="908" firstItem="791" firstAttribute="top" secondItem="838" secondAttribute="top" constant="-64"/>
+                                    <constraint id="915" firstItem="791" firstAttribute="width" secondItem="838" secondAttribute="width"/>
+                                    <constraint id="919" firstItem="918" firstAttribute="top" secondItem="791" secondAttribute="bottom"/>
+                                    <constraint id="927" firstItem="918" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="928" firstItem="838" firstAttribute="trailing" secondItem="918" secondAttribute="trailing"/>
+                                    <constraint id="934" firstItem="933" firstAttribute="top" secondItem="918" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="937" firstItem="933" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="940" firstItem="938" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="941" firstItem="938" firstAttribute="trailing" secondItem="838" secondAttribute="trailing"/>
+                                    <constraint id="942" firstItem="938" firstAttribute="top" secondItem="933" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="946" firstItem="943" firstAttribute="top" secondItem="938" secondAttribute="centerY" constant="20"/>
+                                    <constraint id="947" firstItem="943" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="951" firstItem="948" firstAttribute="top" secondItem="943" secondAttribute="bottom" constant="20"/>
+                                    <constraint id="952" firstItem="948" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="956" firstItem="953" firstAttribute="leading" secondItem="943" secondAttribute="trailing" constant="20"/>
+                                    <constraint id="959" firstItem="953" firstAttribute="centerY" secondItem="943" secondAttribute="centerY"/>
+                                    <constraint id="962" firstItem="960" firstAttribute="centerY" secondItem="948" secondAttribute="centerY"/>
+                                    <constraint id="963" firstItem="960" firstAttribute="leading" secondItem="948" secondAttribute="trailing" constant="20"/>
+                                    <constraint id="974" firstItem="972" firstAttribute="top" secondItem="948" secondAttribute="bottom" constant="10"/>
+                                    <constraint id="975" firstItem="972" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="976" firstItem="838" firstAttribute="trailing" secondItem="972" secondAttribute="trailing"/>
+                                    <constraint id="1007" firstItem="1002" firstAttribute="top" secondItem="972" secondAttribute="centerY" constant="10"/>
+                                    <constraint id="1008" firstItem="1005" firstAttribute="top" secondItem="1002" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="1009" firstItem="999" firstAttribute="top" secondItem="1005" secondAttribute="centerY" constant="20"/>
+                                    <constraint id="1010" firstItem="998" firstAttribute="centerY" secondItem="999" secondAttribute="centerY"/>
+                                    <constraint id="1011" firstItem="997" firstAttribute="centerY" secondItem="994" secondAttribute="centerY"/>
+                                    <constraint id="1012" firstItem="994" firstAttribute="top" secondItem="999" secondAttribute="bottom" constant="20"/>
+                                    <constraint id="1013" firstItem="992" firstAttribute="top" secondItem="994" secondAttribute="bottom" constant="10"/>
+                                    <constraint id="1016" firstItem="1002" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="1017" firstItem="999" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="1018" firstItem="1005" firstAttribute="trailing" secondItem="838" secondAttribute="trailing"/>
+                                    <constraint id="1019" firstItem="1005" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="1020" firstItem="994" firstAttribute="leading" secondItem="838" secondAttribute="leading" constant="20"/>
+                                    <constraint id="1021" firstItem="992" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
+                                    <constraint id="1022" firstItem="992" firstAttribute="trailing" secondItem="838" secondAttribute="trailing"/>
+                                    <constraint id="1025" firstItem="998" firstAttribute="leading" secondItem="999" secondAttribute="trailing" constant="20"/>
+                                    <constraint id="1026" firstItem="997" firstAttribute="leading" secondItem="994" secondAttribute="trailing" constant="20"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="839" firstItem="838" firstAttribute="trailing" secondItem="710" secondAttribute="trailing"/>
+                            <constraint id="840" firstItem="838" firstAttribute="bottom" secondItem="707" secondAttribute="top"/>
+                            <constraint id="841" firstItem="838" firstAttribute="leading" secondItem="710" secondAttribute="leading"/>
+                            <constraint id="842" firstItem="838" firstAttribute="top" secondItem="706" secondAttribute="bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scoreOverviewView" destination="791" id="name-outlet-791"/>
+                        <outlet property="imgTeam1Player1" destination="811" id="name-outlet-811"/>
+                        <outlet property="imgTeam1Player2" destination="814" id="name-outlet-814"/>
+                        <outlet property="imgTeam2Player1" destination="800" id="name-outlet-800"/>
+                        <outlet property="imgTeam2Player2" destination="797" id="name-outlet-797"/>
+                        <outlet property="lblTeam1Score" destination="808" id="name-outlet-808"/>
+                        <outlet property="lblTeam2Score" destination="803" id="name-outlet-803"/>
+                        <outlet property="scrollView" destination="838" id="name-outlet-838"/>
+                    </connections>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="800"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="711" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="709"/>
         </scene>
     </scenes>
     <resources>
