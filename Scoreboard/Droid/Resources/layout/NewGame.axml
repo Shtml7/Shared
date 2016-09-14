@@ -8,7 +8,7 @@
         p1:layout_height="wrap_content"
         p1:text="Team1"
         p1:textSize="16dp"
-        p1:textColor="#000000" />
+        p1:textColor="#ffffff" />
     <LinearLayout
         p1:orientation="horizontal"
         p1:layout_width="match_parent"
@@ -24,7 +24,7 @@
             p1:layout_height="wrap_content"
             p1:text="name"
             p1:textSize="14dp"
-            p1:textColor="#000000" />
+            p1:textColor="#ffffff" />
     </LinearLayout>
     <LinearLayout
         p1:orientation="horizontal"
@@ -41,14 +41,14 @@
             p1:layout_height="wrap_content"
             p1:text="name"
             p1:textSize="14dp"
-            p1:textColor="#000000" />
+            p1:textColor="#ffffff" />
     </LinearLayout>
     <TextView
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:text="Team2"
         p1:textSize="16dp"
-        p1:textColor="#000000" />
+        p1:textColor="#ffffff" />
     <LinearLayout
         p1:orientation="horizontal"
         p1:layout_width="match_parent"
@@ -64,7 +64,7 @@
             p1:layout_height="wrap_content"
             p1:text="name"
             p1:textSize="14dp"
-            p1:textColor="#000000" />
+            p1:textColor="#ffffff" />
     </LinearLayout>
     <LinearLayout
         p1:orientation="horizontal"
@@ -81,13 +81,13 @@
             p1:layout_height="wrap_content"
             p1:text="name"
             p1:textSize="14dp"
-            p1:textColor="#000000" />
+            p1:textColor="#ffffff" />
     </LinearLayout>
-  <Button
-            p1:text="Create"
-            p1:layout_width="match_parent"
-            p1:layout_height="75px"
-            p1:id="@+id/createGameBtn"
-            p1:background="@android:color/background_light"
-            p1:textColor="@android:color/background_dark" />
+    <Button
+        p1:text="Create"
+        p1:layout_width="match_parent"
+        p1:layout_height="75px"
+        p1:id="@+id/createGameBtn"
+        p1:background="@android:color/background_light"
+        p1:textColor="@android:color/background_dark" />
 </LinearLayout>

@@ -58,7 +58,7 @@ namespace Scoreboard
 					}
 
 					multi.Add(imageContent, "file");
-					multi.Add(new StringContent(user.name), "name");
+					multi.Add(new StringContent(user.username), "name");
 					multi.Add(new StringContent(ext), "extension");
 
 					System.Diagnostics.Debug.WriteLine("Going to post now");
