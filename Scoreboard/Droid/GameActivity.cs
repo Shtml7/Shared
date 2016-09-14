@@ -49,7 +49,7 @@ public class GameActivity : Activity
 
         FindViewById<ImageView>(Resource.Id.team2Player2Image).SetImageBitmap(team2Player2);
         FindViewById<TextView>(Resource.Id.team2Player2Text).Text = game.team2.player2.username;
-
+        Toast.MakeText(this, "Test", ToastLength.Short).Show();
     }
 
     private Bitmap GetImageBitmapFromUrl(string url)
