@@ -72,17 +72,17 @@ namespace Scoreboard.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060017
-			public const int button1 = 2131099671;
-			
 			// aapt resource value: 0x7f060018
-			public const int button2 = 2131099672;
+			public const int button1 = 2131099672;
 			
 			// aapt resource value: 0x7f060019
-			public const int button3 = 2131099673;
+			public const int button2 = 2131099673;
 			
-			// aapt resource value: 0x7f060024
-			public const int createGameBtn = 2131099684;
+			// aapt resource value: 0x7f06001a
+			public const int button3 = 2131099674;
+			
+			// aapt resource value: 0x7f060025
+			public const int createGameBtn = 2131099685;
 			
 			// aapt resource value: 0x7f060001
 			public const int dialogText = 2131099649;
@@ -102,8 +102,8 @@ namespace Scoreboard.Droid
 			// aapt resource value: 0x7f060006
 			public const int gameTextView = 2131099654;
 			
-			// aapt resource value: 0x7f06001a
-			public const int games = 2131099674;
+			// aapt resource value: 0x7f06001b
+			public const int games = 2131099675;
 			
 			// aapt resource value: 0x7f060002
 			public const int imageBtn = 2131099650;
@@ -114,50 +114,53 @@ namespace Scoreboard.Droid
 			// aapt resource value: 0x7f060000
 			public const int linearLayout1 = 2131099648;
 			
-			// aapt resource value: 0x7f06001b
-			public const int newGameBtn = 2131099675;
+			// aapt resource value: 0x7f060011
+			public const int liveStreamImg = 2131099665;
 			
 			// aapt resource value: 0x7f06001c
-			public const int newTeam1Player1Image = 2131099676;
+			public const int newGameBtn = 2131099676;
 			
 			// aapt resource value: 0x7f06001d
-			public const int newTeam1Player1Text = 2131099677;
+			public const int newTeam1Player1Image = 2131099677;
 			
 			// aapt resource value: 0x7f06001e
-			public const int newTeam1Player2Image = 2131099678;
+			public const int newTeam1Player1Text = 2131099678;
 			
 			// aapt resource value: 0x7f06001f
-			public const int newTeam1Player2Text = 2131099679;
+			public const int newTeam1Player2Image = 2131099679;
 			
 			// aapt resource value: 0x7f060020
-			public const int newTeam2Player1Image = 2131099680;
+			public const int newTeam1Player2Text = 2131099680;
 			
 			// aapt resource value: 0x7f060021
-			public const int newTeam2Player1Text = 2131099681;
+			public const int newTeam2Player1Image = 2131099681;
 			
 			// aapt resource value: 0x7f060022
-			public const int newTeam2Player2Image = 2131099682;
+			public const int newTeam2Player1Text = 2131099682;
 			
 			// aapt resource value: 0x7f060023
-			public const int newTeam2Player2Text = 2131099683;
+			public const int newTeam2Player2Image = 2131099683;
 			
-			// aapt resource value: 0x7f060016
-			public const int relativeLayout1 = 2131099670;
+			// aapt resource value: 0x7f060024
+			public const int newTeam2Player2Text = 2131099684;
 			
-			// aapt resource value: 0x7f060011
-			public const int rowImageView1 = 2131099665;
+			// aapt resource value: 0x7f060017
+			public const int relativeLayout1 = 2131099671;
 			
 			// aapt resource value: 0x7f060012
-			public const int rowImageView2 = 2131099666;
-			
-			// aapt resource value: 0x7f060014
-			public const int rowImageView3 = 2131099668;
-			
-			// aapt resource value: 0x7f060015
-			public const int rowImageView4 = 2131099669;
+			public const int rowImageView1 = 2131099666;
 			
 			// aapt resource value: 0x7f060013
-			public const int rowTextView = 2131099667;
+			public const int rowImageView2 = 2131099667;
+			
+			// aapt resource value: 0x7f060015
+			public const int rowImageView3 = 2131099669;
+			
+			// aapt resource value: 0x7f060016
+			public const int rowImageView4 = 2131099670;
+			
+			// aapt resource value: 0x7f060014
+			public const int rowTextView = 2131099668;
 			
 			// aapt resource value: 0x7f060009
 			public const int team1Player1Image = 2131099657;
@@ -183,11 +186,11 @@ namespace Scoreboard.Droid
 			// aapt resource value: 0x7f060010
 			public const int team2Player2Text = 2131099664;
 			
-			// aapt resource value: 0x7f060025
-			public const int userRow = 2131099685;
-			
 			// aapt resource value: 0x7f060026
-			public const int users = 2131099686;
+			public const int userRow = 2131099686;
+			
+			// aapt resource value: 0x7f060027
+			public const int users = 2131099687;
 			
 			static Id()
 			{
@@ -241,6 +244,9 @@ namespace Scoreboard.Droid
 			
 			// aapt resource value: 0x7f020001
 			public const int noImage = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Play = 2130837506;
 			
 			static Mipmap()
 			{

@@ -1,10 +1,12 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using Newtonsoft.Json;
 using Scoreboard.domain;
 using Scoreboard.Droid;
+using System;
 using System.Net;
 
 [Activity(Label = "Scoreboard.Droid")]
@@ -50,6 +52,14 @@ public class GameActivity : Activity
         FindViewById<ImageView>(Resource.Id.team2Player2Image).SetImageBitmap(team2Player2);
         FindViewById<TextView>(Resource.Id.team2Player2Text).Text = game.team2.player2.username;
         Toast.MakeText(this, "Test", ToastLength.Short).Show();
+
+        ImageView livestream = FindViewById<ImageView>(Resource.Id.liveStreamImg);
+        livestream.Click += (object sender, EventArgs e) =>
+        {
+            var activity = new Intent(this, typeof(LiveStreamActivity));
+            StartActivity(activity);
+        };
+        livestream.SetImageResource(Resource.Mipmap.Play);
     }
 
     private Bitmap GetImageBitmapFromUrl(string url)
