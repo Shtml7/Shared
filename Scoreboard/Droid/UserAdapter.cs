@@ -35,7 +35,7 @@ public class UserAdapter : BaseAdapter<User>
         View view = convertView; // re-use an existing view, if one is available
         if (view == null) // otherwise create a new one
             view = context.LayoutInflater.Inflate(Resource.Layout.UserAdapter, null);
-        view.FindViewById<TextView>(Resource.Id.userRow).Text = users[position].name;
+        view.FindViewById<TextView>(Resource.Id.userRow).Text = users[position].username;
         return view;
     }
 }
