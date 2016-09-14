@@ -106,29 +106,29 @@ namespace Scoreboard.Droid
             User user = users[e.Position];
 
             //Make a toast with the item name just to show it was clicked
-            Toast.MakeText(this, user.username + " Clicked!", ToastLength.Short).Show();
+            Toast.MakeText(this, user.name + " Clicked!", ToastLength.Short).Show();
 
             switch (clicked)
             {
                 case 1:
                     game.team1.player1 = user;
                     FindViewById<ImageView>(Resource.Id.newTeam1Player1Image).SetImageBitmap(GetImageBitmapFromUrl(user.imageUrl));
-                    FindViewById<TextView>(Resource.Id.newTeam1Player1Text).Text = user.username;
+                    FindViewById<TextView>(Resource.Id.newTeam1Player1Text).Text = user.name;
                     break;
                 case 2:
                     game.team1.player2 = user;
                     FindViewById<ImageView>(Resource.Id.newTeam1Player2Image).SetImageBitmap(GetImageBitmapFromUrl(user.imageUrl));
-                    FindViewById<TextView>(Resource.Id.newTeam1Player2Text).Text = user.username;
+                    FindViewById<TextView>(Resource.Id.newTeam1Player2Text).Text = user.name;
                     break;
                 case 3:
                     game.team2.player1 = user;
                     FindViewById<ImageView>(Resource.Id.newTeam2Player1Image).SetImageBitmap(GetImageBitmapFromUrl(user.imageUrl));
-                    FindViewById<TextView>(Resource.Id.newTeam2Player1Text).Text = user.username;
+                    FindViewById<TextView>(Resource.Id.newTeam2Player1Text).Text = user.name;
                     break;
                 case 4:
                     game.team2.player2 = user;
                     FindViewById<ImageView>(Resource.Id.newTeam2Player2Image).SetImageBitmap(GetImageBitmapFromUrl(user.imageUrl));
-                    FindViewById<TextView>(Resource.Id.newTeam2Player2Text).Text = user.username;
+                    FindViewById<TextView>(Resource.Id.newTeam2Player2Text).Text = user.name;
                     break;
                 default:
                     break;

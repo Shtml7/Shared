@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
-    p1:id="@+id/relativeLayout1"
-    p1:orientation="vertical">
+    p1:id="@+id/relativeLayout1">
     <LinearLayout
         p1:orientation="horizontal"
         p1:layout_width="match_parent"
@@ -41,18 +40,15 @@
     </LinearLayout>
     <ListView
         p1:layout_width="wrap_content"
-        p1:layout_height="450dp"
+        p1:layout_height="match_parent"
+        p1:layout_marginTop="75px"
+        p1:layout_marginBottom="75px"
         p1:id="@+id/games" />
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:layout_width="match_parent"
-        p1:layout_height="75px">
-        <Button
+  <Button
             p1:text="New Game"
             p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
+            p1:layout_height="75px"
             p1:id="@+id/newGameBtn"
             p1:background="@android:color/background_light"
             p1:textColor="@android:color/background_dark" />
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

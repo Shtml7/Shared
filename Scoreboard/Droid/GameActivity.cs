@@ -39,16 +39,16 @@ public class GameActivity : Activity
         FindViewById<ImageView>(Resource.Id.gameImageView4).SetImageBitmap(team2Player2);
 
         FindViewById<ImageView>(Resource.Id.team1Player1Image).SetImageBitmap(team1Player1);
-        FindViewById<TextView>(Resource.Id.team1Player1Text).Text = game.team1.player1.username;
+        FindViewById<TextView>(Resource.Id.team1Player1Text).Text = game.team1.player1.name;
 
         FindViewById<ImageView>(Resource.Id.team1Player2Image).SetImageBitmap(team1Player2);
-        FindViewById<TextView>(Resource.Id.team1Player2Text).Text = game.team1.player2.username;
+        FindViewById<TextView>(Resource.Id.team1Player2Text).Text = game.team1.player2.name;
 
         FindViewById<ImageView>(Resource.Id.team2Player1Image).SetImageBitmap(team2Player1);
-        FindViewById<TextView>(Resource.Id.team2Player1Text).Text = game.team2.player1.username;
+        FindViewById<TextView>(Resource.Id.team2Player1Text).Text = game.team2.player1.name;
 
         FindViewById<ImageView>(Resource.Id.team2Player2Image).SetImageBitmap(team2Player2);
-        FindViewById<TextView>(Resource.Id.team2Player2Text).Text = game.team2.player2.username;
+        FindViewById<TextView>(Resource.Id.team2Player2Text).Text = game.team2.player2.name;
 
     }
 
