@@ -30,6 +30,21 @@ namespace Scoreboard.iOS
 				}
 			}
 		}
+
+		public static void makeRoundImageView(UIImageView imageView)
+		{
+			try
+			{
+				double min = Math.Min(imageView.Bounds.Width, imageView.Bounds.Height);
+				imageView.Layer.CornerRadius = (float)(min / 2.0);
+				imageView.Layer.MasksToBounds = false;
+				imageView.ClipsToBounds = true;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("Unable to create circle image: " + ex);
+			}
+		}
 	}
 }
 

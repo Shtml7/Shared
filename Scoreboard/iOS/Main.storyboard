@@ -5,65 +5,6 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx">
-                                <rect key="frame" x="224" y="285" width="152" height="30"/>
-                                <state key="normal" title="Hello World, Click Me!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="220" y="46" width="160" height="240"/>
-                                <constraints>
-                                    <constraint id="9" firstAttribute="width" constant="160"/>
-                                    <constraint id="10" firstAttribute="height" constant="240"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HiD-uS-i16"/>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YgX-7e-bMc"/>
-                            <constraint id="14" firstItem="3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="46"/>
-                            <constraint id="22" firstItem="3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="Button" destination="oBE-Ac-vcx" id="OkX-0Z-gth"/>
-                        <outlet property="imageView" destination="3" id="name-outlet-3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
-        </scene>
-        <scene sceneID="27">
-            <objects>
-                <viewController id="28" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="25"/>
-                        <viewControllerLayoutGuide type="bottom" id="26"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="29">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="30" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="653" y="3"/>
-        </scene>
         <scene sceneID="34">
             <objects>
                 <navigationController definesPresentationContext="YES" id="35" sceneMemberID="viewController">
@@ -208,6 +149,7 @@
                     <connections>
                         <outlet property="gameTableView" destination="447" id="name-outlet-447"/>
                         <segue id="891" destination="709" kind="show" identifier="gameDetailSegue"/>
+                        <segue id="1112" destination="51" kind="presentation" identifier="registerSegue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1378" y="1759"/>
+            <point key="canvasLocation" x="954" y="35"/>
         </scene>
         <scene sceneID="188">
             <objects>
@@ -628,6 +570,14 @@
                         <outlet property="lblTeam1Score" destination="808" id="name-outlet-808"/>
                         <outlet property="lblTeam2Score" destination="803" id="name-outlet-803"/>
                         <outlet property="scrollView" destination="838" id="name-outlet-838"/>
+                        <outlet property="imgTeam1Player1Detail" destination="943" id="name-outlet-943"/>
+                        <outlet property="imgTeam1Player2Detail" destination="948" id="name-outlet-948"/>
+                        <outlet property="imgTeam2Player1Detail" destination="999" id="name-outlet-999"/>
+                        <outlet property="imgTeam2Player2Detail" destination="994" id="name-outlet-994"/>
+                        <outlet property="lblTeam1Player1" destination="953" id="name-outlet-953"/>
+                        <outlet property="lblTeam1Player2" destination="960" id="name-outlet-960"/>
+                        <outlet property="lblTeam2Player1" destination="998" id="name-outlet-998"/>
+                        <outlet property="lblTeam2Player2" destination="997" id="name-outlet-997"/>
                     </connections>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>

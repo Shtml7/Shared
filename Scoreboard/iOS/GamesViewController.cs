@@ -19,6 +19,7 @@ namespace Scoreboard.iOS
 			}
 		}
 		public Game selectedGame;
+		UIImagePickerController imagePicker;
 
 		public UIImage imgTeam1Player1;
 		public UIImage imgTeam1Player2;
@@ -46,13 +47,9 @@ namespace Scoreboard.iOS
 		{
 			UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
 			RegisterModalViewController viewController = storyboard.InstantiateViewController("registerModalViewController") as RegisterModalViewController;
+
 			PresentViewController(viewController, true, null);
 		}
-
-		//public void didSelectGame(Game game)
-		//{
-		//	this.selectedGame = game;
-		//}
 
 		public void goToDetailViewController()
 		{

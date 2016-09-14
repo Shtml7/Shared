@@ -46,10 +46,10 @@ namespace Scoreboard.iOS
 			cell.ImgTeam2Player1.Image = ImgTeam2Player1;
 			cell.ImgTeam2Player2.Image = ImgTeam2Player2;
 
-			makeRoundImageView(cell.ImgTeam1Player1);
-			makeRoundImageView(cell.ImgTeam1Player2);
-			makeRoundImageView(cell.ImgTeam2Player1);
-			makeRoundImageView(cell.ImgTeam2Player2);
+			IOSImageUtil.makeRoundImageView(cell.ImgTeam1Player1);
+			IOSImageUtil.makeRoundImageView(cell.ImgTeam1Player2);
+			IOSImageUtil.makeRoundImageView(cell.ImgTeam2Player1);
+			IOSImageUtil.makeRoundImageView(cell.ImgTeam2Player2);
 
 			owner.imgTeam1Player1 = ImgTeam1Player1;
 			owner.imgTeam1Player2 = ImgTeam1Player2;
@@ -57,21 +57,6 @@ namespace Scoreboard.iOS
 			owner.imgTeam2Player2 = ImgTeam2Player2;
 
 			return cell;
-		}
-
-		private void makeRoundImageView(UIImageView imageView)
-		{
-			try
-			{
-				double min = Math.Min(imageView.Bounds.Width, imageView.Bounds.Height);
-				imageView.Layer.CornerRadius = (float)(min / 2.0);
-				imageView.Layer.MasksToBounds = false;
-				imageView.ClipsToBounds = true;
-			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine("Unable to create circle image: " + ex);
-			}
 		}
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)

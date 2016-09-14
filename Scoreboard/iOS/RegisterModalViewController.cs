@@ -23,6 +23,8 @@ namespace Scoreboard.iOS
 			imagePicker = new UIImagePickerController();
 			imagePicker.FinishedPickingMedia += Handle_FinishedPickingMedia;
 			imagePicker.Canceled += Handle_Canceled;
+			imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+			imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary);
 
 			UITapGestureRecognizer tapGesture = new UITapGestureRecognizer(TapProfileImageView);
 			profileImage.AddGestureRecognizer(tapGesture);
@@ -71,10 +73,16 @@ namespace Scoreboard.iOS
 		private void TapProfileImageView()
 		{
 			System.Diagnostics.Debug.WriteLine("Did tap imageview");
-			imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-			imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary);
 
-			PresentModalViewController(imagePicker, true);
+			try
+			{
+				PresentViewController(imagePicker, true, null);
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("EXCEPTION: " + ex.Message);
+			}
+
 		}
 
 		protected void Handle_FinishedPickingMedia(object sender, UIImagePickerMediaPickedEventArgs e)
@@ -102,6 +110,7 @@ namespace Scoreboard.iOS
 				{
 					Console.WriteLine("got the original image");
 					profileImage.Image = originalImage;
+					lblWarning.Text = "";
 				}
 			}
 			else
@@ -119,6 +128,7 @@ namespace Scoreboard.iOS
 		private void Handle_Canceled(object sender, EventArgs e)
 		{
 			imagePicker.DismissModalViewController(true);
+			lblWarning.Text = "";
 		}
 
 		private void OnKeyboardShowNotification(NSNotification notification)
