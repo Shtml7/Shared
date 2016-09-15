@@ -189,15 +189,11 @@
     <BundleResource Include="Resources\User%402x.png" />
     <BundleResource Include="Resources\noImage.png" />
   </ItemGroup>
-<<<<<<< Updated upstream
-  <ItemGroup />
-=======
   <ItemGroup>
     <Folder Include="Util\" />
     <Folder Include="Datasource\" />
     <Folder Include="domain\" />
   </ItemGroup>
->>>>>>> Stashed changes
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
