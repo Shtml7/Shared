@@ -137,7 +137,7 @@ namespace Scoreboard.Droid
                 User user = new User();
                 user.username = userInput.Text;
                 byte[] image = ReadFully(imageStream);
-                UserCall.UploadImage(image, "jpg", user);
+                UserCall.createUser(image, "jpg", user);
             }
         }
 

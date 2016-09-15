@@ -1,6 +1,8 @@
 using Foundation;
 using System;
 using UIKit;
+using Scoreboard.domain;
+using Scoreboard.communicator;
 
 namespace Scoreboard.iOS
 {
@@ -37,15 +39,46 @@ namespace Scoreboard.iOS
 
 		partial void BarButtonSave_Activated(UIBarButtonItem sender)
 		{
+			saveAndCreateGame();
+		}
+
+
+		public async void saveAndCreateGame()
+		{
 			if (team1Player1 != null && team1Player2 != null && team2Player1 != null && team2Player2 != null)
 			{
-				//Save and dismiss
+				//Save and dismis
+				Team team1 = new Team();
+				team1.player1 = team1Player1;
+				team1.player2 = team1Player2;
+
+				Team team2 = new Team();
+				team2.player1 = team2Player1;
+				team2.player2 = team2Player2;
+
+				Game game = new Game();
+				game.team1 = team1;
+				game.team2 = team2;
+
+				var plist = NSUserDefaults.StandardUserDefaults;
+				var userId = (int)plist.IntForKey("userId");
+				User owner = await UserCall.getUserWithid(userId);
+				if (owner != null)
+				{
+					Game createdGame = await GameCall.createGame(game);
+					if (createdGame.id != 0 || createdGame.id != -1)
+					{
+						DismissViewController(true, null);
+					}
+					else
+					{
+						showAlertController("Error", "Unable to create the game");
+					}
+				}
 			}
-			else 
+			else
 			{
-				var alertController = UIAlertController.Create("Warning", "Please select all 4 players.", UIAlertControllerStyle.Alert);
-				alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert => System.Diagnostics.Debug.Write("OK was selected")));
-				this.PresentViewController(alertController, true, null);
+				showAlertController("Warning", "Please select all four players");
 			}
 		}
 
@@ -123,6 +156,13 @@ namespace Scoreboard.iOS
 					lblRankTeam2Player2.Text = "Wins: " + user.wins + " Loses: " + user.losses;
 				break;
 			}
+		}
+
+		public void showAlertController(String title, String message)
+		{
+			var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+			alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, alert => System.Diagnostics.Debug.Write("OK was selected")));
+			this.PresentViewController(alertController, true, null);
 		}
 	}
 

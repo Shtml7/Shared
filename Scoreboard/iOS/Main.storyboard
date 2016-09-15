@@ -244,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="2051"/>
+            <point key="canvasLocation" x="1498" y="1840"/>
         </scene>
         <scene sceneID="188">
             <objects>
@@ -965,41 +965,41 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1507" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
-                                                    <rect key="frame" x="20" y="5" width="50" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1513" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="89.5" y="10" width="470.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1518" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="89.5" y="35" width="470.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1650" translatesAutoresizingMaskIntoConstraints="NO">
+                                                    <rect key="frame" x="20" y="10" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint id="1508" firstItem="1507" firstAttribute="height" constant="50"/>
-                                                        <constraint id="1509" firstItem="1507" firstAttribute="width" constant="50"/>
+                                                        <constraint id="1668" firstItem="1650" firstAttribute="width" constant="40"/>
+                                                        <constraint id="1669" firstItem="1650" firstAttribute="height" constant="40"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1513" translatesAutoresizingMaskIntoConstraints="NO">
-                                                    <rect key="frame" x="110" y="5" width="450" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1518" translatesAutoresizingMaskIntoConstraints="NO">
-                                                    <rect key="frame" x="110" y="34.5" width="450" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint id="1511" firstItem="1507" firstAttribute="leading" secondItem="1497" secondAttribute="leading" constant="20"/>
-                                                <constraint id="1512" firstItem="1507" firstAttribute="centerY" secondItem="1497" secondAttribute="centerY"/>
-                                                <constraint id="1515" firstItem="1513" firstAttribute="leading" secondItem="1507" secondAttribute="trailing" constant="40"/>
                                                 <constraint id="1516" firstItem="1497" firstAttribute="trailing" secondItem="1513" secondAttribute="trailing" constant="40"/>
-                                                <constraint id="1517" firstItem="1507" firstAttribute="top" secondItem="1513" secondAttribute="top"/>
-                                                <constraint id="1519" firstItem="1518" firstAttribute="bottom" secondItem="1507" secondAttribute="bottom"/>
                                                 <constraint id="1521" firstItem="1497" firstAttribute="trailing" secondItem="1518" secondAttribute="trailing" constant="40"/>
-                                                <constraint id="1522" firstItem="1518" firstAttribute="leading" secondItem="1507" secondAttribute="trailing" constant="40"/>
+                                                <constraint id="1652" firstItem="1650" firstAttribute="leading" secondItem="1497" secondAttribute="leading" constant="20"/>
+                                                <constraint id="1657" firstItem="1650" firstAttribute="top" secondItem="1513" secondAttribute="top" constant="-5"/>
+                                                <constraint id="1658" firstItem="1513" firstAttribute="leading" secondItem="1650" secondAttribute="trailing" constant="20"/>
+                                                <constraint id="1659" firstItem="1650" firstAttribute="bottom" secondItem="1518" secondAttribute="bottom" constant="5"/>
+                                                <constraint id="1660" firstItem="1518" firstAttribute="leading" secondItem="1650" secondAttribute="trailing" constant="20"/>
+                                                <constraint id="1667" firstItem="1650" firstAttribute="centerY" secondItem="1497" secondAttribute="centerY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imgProfile" destination="1507" id="name-outlet-1507"/>
                                             <outlet property="lblPlayerUsername" destination="1513" id="name-outlet-1513"/>
                                             <outlet property="lblPlayerRank" destination="1518" id="name-outlet-1518"/>
+                                            <outlet property="imgProfile" destination="1650" id="name-outlet-1650"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

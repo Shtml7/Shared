@@ -43,12 +43,12 @@ namespace Scoreboard.communicator
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseUrl);
+				client.BaseAddress = new Uri(baseUrl);
 
                 try
                 {
                     string gameJson = JsonConvert.SerializeObject(game);
-                    System.Diagnostics.Debug.WriteLine("Going to post now");
+                    System.Diagnostics.Debug.WriteLine("Going to post now: " + gameJson);
 					var response = await client.PostAsync("scoreboard/api/games", new StringContent(gameJson, Encoding.UTF8, "application/json"));
                     response.EnsureSuccessStatusCode();
 

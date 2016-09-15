@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 using Scoreboard.domain;
+using System.Threading.Tasks;
 
 namespace Scoreboard.iOS
 {
@@ -36,10 +37,10 @@ namespace Scoreboard.iOS
 			cell.LblTeam1Score.Text = game.team1.score.ToString();
 			cell.LblTeam2Score.Text = game.team2.score.ToString();
 
-			var ImgTeam1Player1 = IOSImageUtil.FromUrl(game.team1.player1.imageUrl);
-			var ImgTeam1Player2 = IOSImageUtil.FromUrl(game.team1.player2.imageUrl);
-			var ImgTeam2Player1 = IOSImageUtil.FromUrl(game.team2.player1.imageUrl);
-			var ImgTeam2Player2 = IOSImageUtil.FromUrl(game.team2.player2.imageUrl);
+			var ImgTeam1Player1 = IOSImageUtil.OldFromUrl(game.team1.player1.imageUrl);
+			var ImgTeam1Player2 = IOSImageUtil.OldFromUrl(game.team1.player2.imageUrl);
+			var ImgTeam2Player1 = IOSImageUtil.OldFromUrl(game.team2.player1.imageUrl);
+			var ImgTeam2Player2 = IOSImageUtil.OldFromUrl(game.team2.player2.imageUrl);
 
 			cell.ImgTeam1Player1.Image = ImgTeam1Player1;
 			cell.ImgTeam1Player2.Image = ImgTeam1Player2;

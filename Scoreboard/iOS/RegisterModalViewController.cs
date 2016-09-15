@@ -58,16 +58,31 @@ namespace Scoreboard.iOS
 				lblWarning.Text = "Enter a your name first";
 			}
 			else {
-				var byteArray = IOSImageUtil.CompressImage(profileImage.Image);
-				User user = new User();
-				user.username = tfUsername.Text;
-				UserCall.UploadImage(byteArray, "jpg", user);
+
+				handleRegisterUser();
+
+			}
+
+		}
+
+		public async void handleRegisterUser()
+		{
+			var byteArray = IOSImageUtil.CompressImage(profileImage.Image);
+			User user = new User();
+			user.username = tfUsername.Text;
+			var userId = await UserCall.createUser(byteArray, "jpg", user);
+			if (userId == -1)
+			{
+				lblWarning.Text = "Something went wrong, try again";
+			}
+			else
+			{
 				var plist = NSUserDefaults.StandardUserDefaults;
 				plist.SetString(tfUsername.Text, "username");
 				plist.SetString(imageUrl, "imageUrl");
+				plist.SetInt(userId, "userId");
 				DismissViewController(true, null);
 			}
-
 		}
 
 		private void TapProfileImageView()

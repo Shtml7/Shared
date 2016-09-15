@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Foundation;
 using UIKit;
@@ -21,7 +22,7 @@ namespace Scoreboard.iOS
 			}
 		}
 
-		public static UIImage FromUrl(string uri)
+		public static UIImage OldFromUrl(string uri)
 		{
 			using (var url = new NSUrl(uri))
 			{
@@ -33,29 +34,24 @@ namespace Scoreboard.iOS
 			}
 		}
 
-		//public async static Task<UIImage> FromUrl2(string url)
-		//{
-		//	try
-		//	{
+		public static async Task<UIImage> FromUrl(string imageUrl)
+		{
+			var httpClient = new HttpClient();
+			try
+			{
+				System.Diagnostics.Debug.WriteLine("Going to download image from url: " + imageUrl);
+				Task<byte[]> contentsTask = httpClient.GetByteArrayAsync(imageUrl);
+				var contents = await contentsTask;
 
-		//		using (var client = new HttpClient())
-		//		{
-		//			using (var response = await client.GetAsync(url))
-		//			{
-		//				response.EnsureSuccessStatusCode();
-		//				//var byteArray = response.Content.ReadAsInputStreamAsync();
-		//				//UIImage image = new UIImage(byteArray.as);
-		//			}
-		//		}
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		System.Diagnostics.Debug.WriteLine("EXCEPTION WHILE LOADING IMAGE FROM URL: " + ex.Message);
-		//		return new UIImage("noImage.png");
-		//	}
+				return UIImage.LoadFromData(NSData.FromArray(contents));
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("EXCEPTION: " + ex.Message);
+				return new UIImage("noImage.png");
+			}
 
-
-		//}
+		}
 
 		public static void makeRoundImageView(UIImageView imageView)
 		{

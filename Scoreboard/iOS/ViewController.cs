@@ -52,7 +52,7 @@ namespace Scoreboard.iOS
 					break;
 			}
 
-			NSUrl referenceURL = e.Info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
+			//NSUrl referenceURL = e.Info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
 			
 			if (isImage)
 			{
@@ -65,7 +65,7 @@ namespace Scoreboard.iOS
 					User user = new User();
 					user.username = "ericderegter";
 					var byteArray = IOSImageUtil.CompressImage(originalImage);
-					UserCall.UploadImage(byteArray, "jpg", user);
+					UserCall.createUser(byteArray, "jpg", user);
 				}
 			}
 			else { // if it's a video

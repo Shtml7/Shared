@@ -9,12 +9,12 @@ namespace Scoreboard.iOS
 	{
 		String cellIdentifier = "PlayerCell";
 
-		List<User> users;
+		List<iOSUser> users;
 		SelectPlayerViewController owner;
 		Dictionary<User, UIImage> userDict;
 
 
-		public SelectPlayerDatasource(List<User> users, SelectPlayerViewController owner)
+		public SelectPlayerDatasource(List<iOSUser> users, SelectPlayerViewController owner)
 		{
 			this.users = users;
 			this.owner = owner;
@@ -24,7 +24,7 @@ namespace Scoreboard.iOS
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			SelectPlayerCell cell = tableView.DequeueReusableCell(cellIdentifier) as SelectPlayerCell;
-			User user = users[indexPath.Row];
+			iOSUser user = users[indexPath.Row];
 			if (cell == null)
 			{
 				cell = new SelectPlayerCell();
@@ -35,12 +35,14 @@ namespace Scoreboard.iOS
 			{
 				image = userDict[user];
 			}
-			else 
+			else
 			{
-				image = IOSImageUtil.FromUrl(user.imageUrl);
+				image = user.image;
+				userDict.Add(user, image);
 			}
 
-			cell.ImageView.Image = image;
+			cell.ImgProfile.Image = image;
+			IOSImageUtil.makeRoundImageView(cell.ImgProfile);
 			cell.LblPlayerUsername.Text = user.username;
 			cell.LblPlayerRank.Text = "Wins: " + user.wins + "  Losses " + user.losses;
 
@@ -59,10 +61,8 @@ namespace Scoreboard.iOS
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			base.RowSelected(tableView, indexPath);
 			User selectedUser = users[indexPath.Row];
 			owner.didSelectPlayer(selectedUser, userDict[selectedUser]);
-
 		}
 	}
 }

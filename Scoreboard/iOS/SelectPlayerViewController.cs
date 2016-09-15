@@ -9,15 +9,7 @@ namespace Scoreboard.iOS
     {
 		public AddGameViewController parent;
 		public NrPlayer thisPlayer;
-		List<User> users
-		{
-			set
-			{
-				System.Diagnostics.Debug.WriteLine("Set datasource");
-				playersTableView.Source = new SelectPlayerDatasource(value, this);
-				playersTableView.ReloadData();
-			}
-		}
+		List<iOSUser> users;
 
 
         public SelectPlayerViewController (IntPtr handle) : base (handle)
@@ -27,10 +19,28 @@ namespace Scoreboard.iOS
 		public async override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+			users = new List<iOSUser>();
 
-			users = await UserCall.getUsers();
-
-
+			var userList = await UserCall.getUsers();
+			if (userList == null)
+			{
+				var alertController = UIAlertController.Create("Warning", "Could not connect to server, please try again.", UIAlertControllerStyle.Alert);
+				alertController.AddAction(UIAlertAction.Create("Try Again", UIAlertActionStyle.Default, alert => ViewDidLoad()));
+				alertController.AddAction(UIAlertAction.Create("No thanks", UIAlertActionStyle.Default, alert => System.Diagnostics.Debug.Write("No thanks was selected")));
+				this.PresentViewController(alertController, true, null);
+			}
+			else {
+				System.Diagnostics.Debug.WriteLine("NR OF USERS IN LIST: " + userList.Count);
+				foreach (var user in userList)
+				{
+					UIImage image = await IOSImageUtil.FromUrl(user.imageUrl);
+					var iosUser = new iOSUser(image, user);
+					users.Add(iosUser);
+					System.Diagnostics.Debug.WriteLine("NR OF USERS IN LIST: " + users.Count);
+					playersTableView.Source = new SelectPlayerDatasource(users, this);
+					playersTableView.ReloadData();
+				}
+			}
 		}
 
 		partial void BarButtonCancel_Activated(UIBarButtonItem sender)
@@ -41,6 +51,7 @@ namespace Scoreboard.iOS
 		public void didSelectPlayer(User user, UIImage image)
 		{
 			parent.didSelectPlayer(thisPlayer, user, image);
+			this.DismissViewController(true, null);
 		}
 	}
 }

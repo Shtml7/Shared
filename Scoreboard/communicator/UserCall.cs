@@ -9,38 +9,40 @@ using System.Collections.Generic;
 
 namespace Scoreboard
 {
-    public static class UserCall
-    {
-        private static string baseUrl = "http://77.175.219.85:9090/";
+	public static class UserCall
+	{
+		private static string baseUrl = "http://77.175.219.85:9090/";
 
-        public static async Task<List<User>> getUsers()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-				HttpResponseMessage response = await client.GetAsync("scoreboard/api/users");
-                List<User> u = null;
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonResponse = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
-                    u = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Something went wrong with the API call. Status code: " + response.StatusCode);                    
-                    throw new WebException("Could not reach the server. Status code: " + response.StatusCode);
-                }
-                return u;
-            }
-        }
-
-		public static async void UploadImage(byte[] data, String ext, User user)
+		public static async Task<List<User>> getUsers()
 		{
-			using (var client = new HttpClient()) {
+			using (var client = new HttpClient())
+			{
+				try
+				{
+					client.BaseAddress = new Uri(baseUrl);
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+					HttpResponseMessage response = await client.GetAsync("scoreboard/api/users");
+					List<User> user = null;
+					response.EnsureSuccessStatusCode();
+					string jsonResponse = await response.Content.ReadAsStringAsync();
+					System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
+					user = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
+					return user;
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine("Something went wrong with the API call. Status code: " + ex.Message);
+				}
+				return null;
+			}
+		}
+
+		public static async Task<int> createUser(byte[] data, String ext, User user)
+		{
+			using (var client = new HttpClient())
+			{
 				client.BaseAddress = new Uri(baseUrl);
 
 				try
@@ -69,6 +71,7 @@ namespace Scoreboard
 					{
 						var jsonstring = await response.Content.ReadAsStringAsync();
 						System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+						return int.Parse(jsonstring);
 					}
 
 				}
@@ -77,8 +80,35 @@ namespace Scoreboard
 					System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
 
 				}
+				return -1;
 			}
-			
+
 		}
-    }
+
+		public static async Task<User> getUserWithid(int id)
+		{
+			using (var client = new HttpClient())
+			{
+				try
+				{
+					client.BaseAddress = new Uri(baseUrl);
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+					HttpResponseMessage response = await client.GetAsync("scoreboard/api/users/" + id);
+					if (response.IsSuccessStatusCode)
+					{
+						string jsonResponse = await response.Content.ReadAsStringAsync();
+						System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
+						return JsonConvert.DeserializeObject<User>(jsonResponse);
+					}
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine("Something went wrong with the API call. Exception: " + ex.Message);
+				}
+			}
+			return null;
+		}
+	}
 }

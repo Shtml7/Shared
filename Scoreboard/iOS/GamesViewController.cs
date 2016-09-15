@@ -19,7 +19,6 @@ namespace Scoreboard.iOS
 			}
 		}
 		public Game selectedGame;
-		UIImagePickerController imagePicker;
 
 		public UIImage imgTeam1Player1;
 		public UIImage imgTeam1Player2;
@@ -28,7 +27,7 @@ namespace Scoreboard.iOS
 
         public GamesViewController (IntPtr handle) : base (handle) {}
 
-		public async override void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -39,16 +38,17 @@ namespace Scoreboard.iOS
 			{
 				showRegisterViewController();
 			}
+		}
 
+		public async override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
 			games = await GameCall.GetAllGames();
 		}
 
 		public void showRegisterViewController()
 		{
-			UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
-			RegisterModalViewController viewController = storyboard.InstantiateViewController("registerModalViewController") as RegisterModalViewController;
-
-			PresentViewController(viewController, true, null);
+			PerformSegue("registerSegue", this);
 		}
 
 		public void goToDetailViewController()
@@ -63,10 +63,6 @@ namespace Scoreboard.iOS
 			{
 				var gameDetailController = (GameDetailViewController)segue.DestinationViewController;
 				gameDetailController.game = this.selectedGame;
-				gameDetailController.team1Player1Image = imgTeam1Player1;
-				gameDetailController.team1Player2Image = imgTeam1Player2;
-				gameDetailController.team2Player1Image = imgTeam2Player1;
-				gameDetailController.team2Player2Image = imgTeam2Player2;
 			}
 		}
 	}

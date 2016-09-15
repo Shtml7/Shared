@@ -8,10 +8,6 @@ namespace Scoreboard.iOS
     public partial class GameDetailViewController : UIViewController
     {
 		public Game game;
-		public UIImage team1Player1Image;
-		public UIImage team1Player2Image;
-		public UIImage team2Player1Image;
-		public UIImage team2Player2Image;
 
 		private List<UIImageView> imageViews;
 
@@ -19,8 +15,14 @@ namespace Scoreboard.iOS
         {
 		}
 
-		public override void ViewDidLoad()
+		public async override void ViewDidLoad()
 		{
+			var team1Player1Image = await IOSImageUtil.FromUrl(game.team1.player1.imageUrl);
+			var team1Player2Image = await IOSImageUtil.FromUrl(game.team1.player2.imageUrl);
+			var team2Player1Image = await IOSImageUtil.FromUrl(game.team2.player1.imageUrl);
+			var team2Player2Image = await IOSImageUtil.FromUrl(game.team2.player2.imageUrl);
+
+
 			imageViews = new List<UIImageView>();
 			imageViews.Add(imgTeam1Player1);
 			imageViews.Add(imgTeam1Player2);
