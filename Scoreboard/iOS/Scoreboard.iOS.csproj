@@ -179,6 +179,10 @@
       <DependentUpon>SelectPlayerCell.cs</DependentUpon>
     </Compile>
     <Compile Include="domain\iOSUser.cs" />
+    <Compile Include="EditScoreViewController.cs" />
+    <Compile Include="EditScoreViewController.designer.cs">
+      <DependentUpon>EditScoreViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Basketball_Field.png" />
@@ -188,6 +192,8 @@
     <BundleResource Include="Resources\User.png" />
     <BundleResource Include="Resources\User%402x.png" />
     <BundleResource Include="Resources\noImage.png" />
+    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\star%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />

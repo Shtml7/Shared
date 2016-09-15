@@ -16,6 +16,10 @@ namespace Scoreboard.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgIsOwner { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView imgTeam1Player1 { get; set; }
 
         [Outlet]
@@ -40,6 +44,11 @@ namespace Scoreboard.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (imgIsOwner != null) {
+                imgIsOwner.Dispose ();
+                imgIsOwner = null;
+            }
+
             if (imgTeam1Player1 != null) {
                 imgTeam1Player1.Dispose ();
                 imgTeam1Player1 = null;

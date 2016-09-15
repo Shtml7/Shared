@@ -38,17 +38,7 @@ namespace Scoreboard.iOS
 				return true;
 			};
 
-			try
-			{
-				double min = Math.Min(profileImage.Bounds.Width, profileImage.Bounds.Height);
-				profileImage.Layer.CornerRadius = (float)(min / 2.0);
-				profileImage.Layer.MasksToBounds = false;
-				profileImage.ClipsToBounds = true;
-			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine("Unable to create circle image: " + ex);
-			}
+			IOSImageUtil.makeRoundImageView(profileImage);
 		}
 
 		partial void Button_TouchUpInside(UIButton sender)

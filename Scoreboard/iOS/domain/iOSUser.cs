@@ -16,5 +16,16 @@ namespace Scoreboard.iOS
 			this.wins = user.wins;
 			this.losses = user.losses;
 		}
+
+		public User toUser(iOSUser iOSUser)
+		{
+			User user = new User();
+			user.id = iOSUser.id;
+			user.username = iOSUser.username;
+			user.imageUrl = iOSUser.imageUrl;
+			user.wins = iOSUser.wins;
+			user.losses = iOSUser.losses;
+			return user;
+		}
 	}
 }

@@ -61,7 +61,7 @@ namespace Scoreboard.iOS
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			User selectedUser = users[indexPath.Row];
+			iOSUser selectedUser = users[indexPath.Row];
 			owner.didSelectPlayer(selectedUser, userDict[selectedUser]);
 		}
 	}

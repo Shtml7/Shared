@@ -9,16 +9,20 @@ namespace Scoreboard.iOS
 {
 	public partial class GamesViewController : UIViewController
 	{
-		List<Game> games
+		private List<Game> games;
+		List<Game> Games
 		{
+			get { return games; }
 			set
 			{
+				games = value;
 				System.Diagnostics.Debug.WriteLine("Set datasource");
 				gameTableView.Source = new TableViewSource(value, this);
 				gameTableView.ReloadData();
 			}
 		}
 		public Game selectedGame;
+		NSUserDefaults plist = NSUserDefaults.StandardUserDefaults;
 
 		public UIImage imgTeam1Player1;
 		public UIImage imgTeam1Player2;
@@ -31,7 +35,7 @@ namespace Scoreboard.iOS
 		{
 			base.ViewDidLoad();
 
-			var plist = NSUserDefaults.StandardUserDefaults;
+
 			var username = plist.StringForKey("username");
 			System.Diagnostics.Debug.WriteLine("Username: " + username);
 			if (username == null)
@@ -43,7 +47,19 @@ namespace Scoreboard.iOS
 		public async override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			games = await GameCall.GetAllGames();
+			if (Games == null)
+			{
+				Games = await GameCall.GetAllGames();
+			}
+			else
+			{
+				List<Game> newGames = await GameCall.GetAllGames();
+				if (Games.Count != newGames.Count)
+				{
+					Games = newGames;
+				}
+			}
+
 		}
 
 		public void showRegisterViewController()
@@ -63,6 +79,8 @@ namespace Scoreboard.iOS
 			{
 				var gameDetailController = (GameDetailViewController)segue.DestinationViewController;
 				gameDetailController.game = this.selectedGame;
+				var id = plist.IntForKey("userId");
+				gameDetailController.isOwnerOfTheGame = selectedGame.owner.id == id;
 			}
 		}
 	}

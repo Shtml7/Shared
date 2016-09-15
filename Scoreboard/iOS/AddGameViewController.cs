@@ -65,6 +65,7 @@ namespace Scoreboard.iOS
 				User owner = await UserCall.getUserWithid(userId);
 				if (owner != null)
 				{
+					game.owner = owner;
 					Game createdGame = await GameCall.createGame(game);
 					if (createdGame.id != 0 || createdGame.id != -1)
 					{

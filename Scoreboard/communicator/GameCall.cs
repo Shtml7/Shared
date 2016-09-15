@@ -81,12 +81,10 @@ namespace Scoreboard.communicator
                     var response = await client.PutAsync("scoreboard/api/games", new StringContent(gameJson, Encoding.UTF8, "application/json"));
                     response.EnsureSuccessStatusCode();
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var jsonstring = await response.Content.ReadAsStringAsync();
-                        System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
-                        return JsonConvert.DeserializeObject<Game>(jsonstring);
-                    }
+                    var jsonstring = await response.Content.ReadAsStringAsync();
+                    System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+                    return JsonConvert.DeserializeObject<Game>(jsonstring);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -96,5 +94,31 @@ namespace Scoreboard.communicator
             }
 
         }
-    }
+
+		public static async Task<Game> GetGameWithId(long id)
+		{
+			using (var client = new HttpClient())
+			{
+				try
+				{
+					client.BaseAddress = new Uri(baseUrl);
+					client.DefaultRequestHeaders.Accept.Clear();
+					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+					HttpResponseMessage response = await client.GetAsync("scoreboard/api/games/" + id);
+					Game game = null;
+					response.EnsureSuccessStatusCode();
+						string jsonResponse = await response.Content.ReadAsStringAsync();
+						System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
+						game = JsonConvert.DeserializeObject<Game>(jsonResponse);
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
+				}
+				return null;
+			}
+		}
+
+	}
 }

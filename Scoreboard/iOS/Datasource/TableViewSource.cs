@@ -57,6 +57,15 @@ namespace Scoreboard.iOS
 			owner.imgTeam2Player1 = ImgTeam2Player1;
 			owner.imgTeam2Player2 = ImgTeam2Player2;
 
+			var plist = NSUserDefaults.StandardUserDefaults;
+			var userId = (int)plist.IntForKey("userId");
+
+			if (game.owner.id == userId)
+			{
+				cell.ImgIsOwner.Alpha = 1;
+			}
+
+
 			return cell;
 		}
 

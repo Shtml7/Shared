@@ -48,8 +48,9 @@ namespace Scoreboard.iOS
 			this.DismissViewController(true, null);
 		}
 
-		public void didSelectPlayer(User user, UIImage image)
+		public void didSelectPlayer(iOSUser user, UIImage image)
 		{
+			user.image = null;
 			parent.didSelectPlayer(thisPlayer, user, image);
 			this.DismissViewController(true, null);
 		}

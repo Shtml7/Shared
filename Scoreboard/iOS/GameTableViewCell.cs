@@ -85,6 +85,18 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		public UIImageView ImgIsOwner
+		{
+			get
+			{
+				return imgIsOwner;
+			}
+
+			set
+			{
+				this.imgIsOwner = value;
+			}
+		}
 
 		public GameTableViewCell(IntPtr handle) : base(handle)
         {
