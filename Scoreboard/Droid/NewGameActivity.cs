@@ -67,11 +67,11 @@ namespace Scoreboard.Droid
             game.team2 = new Team();
 
             Button createGame = FindViewById<Button>(Resource.Id.createGameBtn);
-            createGame.Click += (object sender, EventArgs e) =>
+            createGame.Click += async (object sender, EventArgs e) =>
             {
                 if (game.team1.player1 != null && game.team2.player1 != null)
                 {
-                    GameCall.createGame(game);
+                    await GameCall.createGame(game);
                     var activity = new Intent(this, typeof(MainActivity));
                     StartActivity(activity);
                 }

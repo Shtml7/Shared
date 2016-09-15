@@ -16,6 +16,8 @@ public class GameActivity : Activity
     Bitmap team1Player2;
     Bitmap team2Player1;
     Bitmap team2Player2;
+    string jsonMyObject;
+
     protected override void OnCreate(Bundle bundle)
     {
         base.OnCreate(bundle);
@@ -23,7 +25,7 @@ public class GameActivity : Activity
         // Set our view from the "main" layout resource
         SetContentView(Resource.Layout.Game);
         
-        string jsonMyObject = Intent.GetStringExtra("game");
+         jsonMyObject = Intent.GetStringExtra("game");
         
         Game game = JsonConvert.DeserializeObject<Game>(jsonMyObject);
         
