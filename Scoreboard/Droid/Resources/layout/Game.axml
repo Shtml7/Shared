@@ -130,4 +130,16 @@
             p1:layout_height="200px"
             p1:background="#ffffff" />
     </LinearLayout>
+  <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="75px">
+    <Button
+                p1:text="Edit"
+                p1:layout_width="match_parent"
+                p1:layout_height="match_parent"
+                p1:id="@+id/editGameBtn"
+                p1:background="@android:color/background_light"
+                p1:textColor="@android:color/background_dark" />
+  </LinearLayout>
 </LinearLayout>

@@ -67,5 +67,34 @@ namespace Scoreboard.communicator
             }
 
         }
+
+        public static async Task<Game> updateGame(Game game)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+
+                try
+                {
+                    string gameJson = JsonConvert.SerializeObject(game);
+                    System.Diagnostics.Debug.WriteLine("Going to put now");
+                    var response = await client.PutAsync("scoreboard/api/games", new StringContent(gameJson, Encoding.UTF8, "application/json"));
+                    response.EnsureSuccessStatusCode();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonstring = await response.Content.ReadAsStringAsync();
+                        System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+                        return JsonConvert.DeserializeObject<Game>(jsonstring);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
+                }
+                return null;
+            }
+
+        }
     }
 }

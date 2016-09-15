@@ -60,6 +60,14 @@ public class GameActivity : Activity
             StartActivity(activity);
         };
         livestream.SetImageResource(Resource.Mipmap.Play);
+
+        Button editGameBtn = FindViewById<Button>(Resource.Id.editGameBtn);
+        editGameBtn.Click += (object sender, EventArgs e) =>
+        {
+            var activity = new Intent(this, typeof(EditGameActivity));
+            activity.PutExtra("game", jsonMyObject);
+            StartActivity(activity);
+        };
     }
 
     private Bitmap GetImageBitmapFromUrl(string url)
