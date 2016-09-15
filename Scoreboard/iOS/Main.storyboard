@@ -84,7 +84,7 @@
                                                     </constraints>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="512" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="right">
-                                                    <rect key="frame" x="221.5" y="28" width="42" height="24"/>
+                                                    <rect key="frame" x="226.5" y="28" width="42" height="24"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -95,7 +95,7 @@
                                                     </constraints>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="516" translatesAutoresizingMaskIntoConstraints="NO">
-                                                    <rect key="frame" x="303.5" y="29.5" width="42" height="21"/>
+                                                    <rect key="frame" x="298.5" y="29.5" width="42" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -113,8 +113,8 @@
                                                 <constraint id="510" firstItem="509" firstAttribute="centerY" secondItem="449" secondAttribute="centerY"/>
                                                 <constraint id="511" firstItem="509" firstAttribute="centerX" secondItem="449" secondAttribute="centerX"/>
                                                 <constraint id="513" firstItem="449" firstAttribute="centerY" secondItem="512" secondAttribute="centerY"/>
-                                                <constraint id="515" firstItem="509" firstAttribute="leading" secondItem="512" secondAttribute="trailing" constant="10" priority="750"/>
-                                                <constraint id="519" firstItem="516" firstAttribute="leading" secondItem="509" secondAttribute="trailing" constant="10" priority="750"/>
+                                                <constraint id="515" firstItem="509" firstAttribute="leading" secondItem="512" secondAttribute="trailing" constant="5" priority="750"/>
+                                                <constraint id="519" firstItem="516" firstAttribute="leading" secondItem="509" secondAttribute="trailing" constant="5" priority="750"/>
                                                 <constraint id="553" firstItem="500" firstAttribute="leading" secondItem="516" secondAttribute="trailing" constant="10" priority="500"/>
                                                 <constraint id="579" firstItem="516" firstAttribute="centerY" secondItem="449" secondAttribute="centerY"/>
                                                 <constraint id="582" firstItem="512" firstAttribute="leading" secondItem="489" secondAttribute="trailing" constant="10" priority="500"/>
@@ -145,7 +145,13 @@
                             <constraint id="632" firstItem="447" firstAttribute="top" secondItem="42" secondAttribute="top"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Now Playing" id="41"/>
+                    <navigationItem key="navigationItem" title="Now Playing" id="41">
+                        <barButtonItem key="rightBarButtonItem" id="1138" systemItem="add">
+                            <connections>
+                                <segue id="1232" destination="1142" kind="presentation" identifier="addGameSegue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gameTableView" destination="447" id="name-outlet-447"/>
                         <segue id="891" destination="709" kind="show" identifier="gameDetailSegue"/>
@@ -238,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="35"/>
+            <point key="canvasLocation" x="1485" y="2051"/>
         </scene>
         <scene sceneID="188">
             <objects>
@@ -261,7 +267,7 @@
         </scene>
         <scene sceneID="200">
             <objects>
-                <viewController id="193" sceneMemberID="viewController">
+                <viewController id="193" sceneMemberID="viewController" customClass="ProfileViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="186"/>
                         <viewControllerLayoutGuide type="bottom" id="187"/>
@@ -270,8 +276,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="202" image="User.png"/>
+                    <connections/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="203" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -279,7 +287,7 @@
         </scene>
         <scene sceneID="347">
             <objects>
-                <viewController id="348" sceneMemberID="viewController">
+                <viewController id="348" sceneMemberID="viewController" customClass="LeaderboardViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="345"/>
                         <viewControllerLayoutGuide type="bottom" id="346"/>
@@ -584,7 +592,438 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="711" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="709"/>
+            <point key="canvasLocation" x="1491" y="876"/>
+        </scene>
+        <scene sceneID="1141">
+            <objects>
+                <viewController id="1142" sceneMemberID="viewController" customClass="AddGameViewController" title="Add Game">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1139"/>
+                        <viewControllerLayoutGuide type="bottom" id="1140"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1143">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1252" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="94" width="48.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" id="1259" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="1260" title="New Game">
+                                        <barButtonItem key="leftBarButtonItem" title="Save" id="1264">
+                                            <connections>
+                                                <action selector="BarButtonSave_Activated:" destination="1142" id="1266"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="1265">
+                                            <connections>
+                                                <action selector="BarButtonCancel_Activated:" destination="1142" id="1267"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" id="1271" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="122" width="600" height="1"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint id="1275" firstItem="1271" firstAttribute="height" constant="1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="1305" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="379" width="600" height="1"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint id="1306" firstItem="1305" firstAttribute="height" constant="1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1307" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="21" y="351" width="50.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1367" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="282" y="303" width="36.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="1373" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="30" y="156" width="128" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1276" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                        <rect key="frame" x="24" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint id="1282" firstItem="1276" firstAttribute="height" constant="80"/>
+                                            <constraint id="1283" firstItem="1276" firstAttribute="width" constant="80"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1321" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="88" width="70" height="14"/>
+                                        <nil key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint id="1325" firstItem="1321" firstAttribute="width" constant="70"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Name">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1322" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="107.5" width="70" height="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Rank">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="1378" firstItem="1276" firstAttribute="centerX" secondItem="1373" secondAttribute="centerX"/>
+                                    <constraint id="1383" firstItem="1321" firstAttribute="centerX" secondItem="1276" secondAttribute="centerX"/>
+                                    <constraint id="1384" firstItem="1322" firstAttribute="centerX" secondItem="1276" secondAttribute="centerX"/>
+                                    <constraint id="1385" firstItem="1322" firstAttribute="width" secondItem="1321" secondAttribute="width"/>
+                                    <constraint id="1386" firstItem="1322" firstAttribute="top" secondItem="1321" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="1388" firstItem="1373" firstAttribute="width" constant="128"/>
+                                    <constraint id="1389" firstItem="1373" firstAttribute="height" constant="128"/>
+                                    <constraint id="1392" firstItem="1276" firstAttribute="top" secondItem="1373" secondAttribute="top"/>
+                                    <constraint id="1462" firstItem="1321" firstAttribute="top" secondItem="1276" secondAttribute="bottom" constant="8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="1409" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="442" y="156" width="128" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1410" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                        <rect key="frame" x="24" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint id="1411" firstItem="1410" firstAttribute="height" constant="80"/>
+                                            <constraint id="1412" firstItem="1410" firstAttribute="width" constant="80"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1413" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="88" width="70" height="14"/>
+                                        <nil key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint id="1414" firstItem="1413" firstAttribute="width" constant="70"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Name">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1415" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="107.5" width="70" height="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Rank">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="1416" firstItem="1410" firstAttribute="centerX" secondItem="1409" secondAttribute="centerX"/>
+                                    <constraint id="1417" firstItem="1413" firstAttribute="centerX" secondItem="1410" secondAttribute="centerX"/>
+                                    <constraint id="1418" firstItem="1415" firstAttribute="centerX" secondItem="1410" secondAttribute="centerX"/>
+                                    <constraint id="1419" firstItem="1415" firstAttribute="width" secondItem="1413" secondAttribute="width"/>
+                                    <constraint id="1420" firstItem="1415" firstAttribute="top" secondItem="1413" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="1421" firstItem="1409" firstAttribute="width" constant="128"/>
+                                    <constraint id="1422" firstItem="1409" firstAttribute="height" constant="128"/>
+                                    <constraint id="1423" firstItem="1410" firstAttribute="top" secondItem="1409" secondAttribute="top"/>
+                                    <constraint id="1463" firstItem="1413" firstAttribute="top" secondItem="1410" secondAttribute="bottom" constant="8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="1427" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="30" y="420.5" width="128" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1428" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                        <rect key="frame" x="24" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint id="1429" firstItem="1428" firstAttribute="height" constant="80"/>
+                                            <constraint id="1430" firstItem="1428" firstAttribute="width" constant="80"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1431" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="88" width="70" height="14"/>
+                                        <nil key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint id="1432" firstItem="1431" firstAttribute="width" constant="70"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Name">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1433" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="107.5" width="70" height="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Rank">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="1434" firstItem="1428" firstAttribute="centerX" secondItem="1427" secondAttribute="centerX"/>
+                                    <constraint id="1435" firstItem="1431" firstAttribute="centerX" secondItem="1428" secondAttribute="centerX"/>
+                                    <constraint id="1436" firstItem="1433" firstAttribute="centerX" secondItem="1428" secondAttribute="centerX"/>
+                                    <constraint id="1437" firstItem="1433" firstAttribute="width" secondItem="1431" secondAttribute="width"/>
+                                    <constraint id="1438" firstItem="1433" firstAttribute="top" secondItem="1431" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="1439" firstItem="1427" firstAttribute="width" constant="128"/>
+                                    <constraint id="1440" firstItem="1427" firstAttribute="height" constant="128"/>
+                                    <constraint id="1441" firstItem="1428" firstAttribute="top" secondItem="1427" secondAttribute="top"/>
+                                    <constraint id="1464" firstItem="1431" firstAttribute="top" secondItem="1428" secondAttribute="bottom" constant="8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="1445" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="442" y="420.5" width="128" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1446" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                        <rect key="frame" x="24" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint id="1447" firstItem="1446" firstAttribute="height" constant="80"/>
+                                            <constraint id="1448" firstItem="1446" firstAttribute="width" constant="80"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1449" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="88" width="70" height="14"/>
+                                        <nil key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint id="1450" firstItem="1449" firstAttribute="width" constant="70"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Name">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1451" translatesAutoresizingMaskIntoConstraints="NO" usesAttributedText="YES">
+                                        <rect key="frame" x="29" y="107.5" width="70" height="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Rank">
+                                                <attributes>
+                                                    <color key="NSColor" colorSpace="calibratedRGB" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1"/>
+                                                    <font key="NSFont" name="HelveticaNeue" family="Helvetica Neue" size="12"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint id="1452" firstItem="1446" firstAttribute="centerX" secondItem="1445" secondAttribute="centerX"/>
+                                    <constraint id="1453" firstItem="1449" firstAttribute="centerX" secondItem="1446" secondAttribute="centerX"/>
+                                    <constraint id="1454" firstItem="1451" firstAttribute="centerX" secondItem="1446" secondAttribute="centerX"/>
+                                    <constraint id="1455" firstItem="1451" firstAttribute="width" secondItem="1449" secondAttribute="width"/>
+                                    <constraint id="1456" firstItem="1451" firstAttribute="top" secondItem="1449" secondAttribute="bottom" constant="5"/>
+                                    <constraint id="1457" firstItem="1445" firstAttribute="width" constant="128"/>
+                                    <constraint id="1458" firstItem="1445" firstAttribute="height" constant="128"/>
+                                    <constraint id="1459" firstItem="1446" firstAttribute="top" secondItem="1445" secondAttribute="top"/>
+                                    <constraint id="1465" firstItem="1449" firstAttribute="top" secondItem="1446" secondAttribute="bottom" constant="8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1253" firstItem="1252" firstAttribute="leading" secondItem="1143" secondAttribute="leading" constant="20"/>
+                            <constraint id="1261" firstItem="1259" firstAttribute="top" secondItem="1139" secondAttribute="bottom"/>
+                            <constraint id="1262" firstItem="1259" firstAttribute="leading" secondItem="1143" secondAttribute="leading"/>
+                            <constraint id="1263" firstItem="1143" firstAttribute="trailing" secondItem="1259" secondAttribute="trailing"/>
+                            <constraint id="1270" firstItem="1252" firstAttribute="top" secondItem="1259" secondAttribute="bottom" constant="30"/>
+                            <constraint id="1272" firstItem="1271" firstAttribute="leading" secondItem="1143" secondAttribute="leading"/>
+                            <constraint id="1273" firstItem="1143" firstAttribute="trailing" secondItem="1271" secondAttribute="trailing"/>
+                            <constraint id="1274" firstItem="1271" firstAttribute="top" secondItem="1252" secondAttribute="bottom" constant="10"/>
+                            <constraint id="1308" firstItem="1307" firstAttribute="leading" secondItem="1143" secondAttribute="leading" constant="21"/>
+                            <constraint id="1310" firstItem="1305" firstAttribute="top" secondItem="1307" secondAttribute="bottom" constant="10"/>
+                            <constraint id="1311" firstItem="1305" firstAttribute="leading" secondItem="1143" secondAttribute="leading"/>
+                            <constraint id="1312" firstItem="1305" firstAttribute="trailing" secondItem="1143" secondAttribute="trailing"/>
+                            <constraint id="1368" firstItem="1143" firstAttribute="centerX" secondItem="1367" secondAttribute="centerX"/>
+                            <constraint id="1370" firstItem="1307" firstAttribute="top" secondItem="1367" secondAttribute="bottom" constant="20"/>
+                            <constraint id="1381" firstItem="1373" firstAttribute="leading" secondItem="1143" secondAttribute="leading" constant="30"/>
+                            <constraint id="1382" firstItem="1373" firstAttribute="top" secondItem="1271" secondAttribute="bottom" constant="33"/>
+                            <constraint id="1393" firstItem="1367" firstAttribute="top" secondItem="1373" secondAttribute="bottom" constant="19"/>
+                            <constraint id="1424" firstItem="1259" firstAttribute="centerX" secondItem="1373" secondAttribute="trailing" constant="40" priority="750"/>
+                            <constraint id="1425" firstItem="1143" firstAttribute="trailing" secondItem="1409" secondAttribute="trailing" constant="30"/>
+                            <constraint id="1426" firstItem="1409" firstAttribute="centerY" secondItem="1373" secondAttribute="centerY"/>
+                            <constraint id="1443" firstItem="1427" firstAttribute="top" secondItem="1305" secondAttribute="centerY" constant="40"/>
+                            <constraint id="1444" firstItem="1427" firstAttribute="centerX" secondItem="1373" secondAttribute="centerX"/>
+                            <constraint id="1460" firstItem="1445" firstAttribute="centerY" secondItem="1427" secondAttribute="centerY"/>
+                            <constraint id="1461" firstItem="1445" firstAttribute="centerX" secondItem="1409" secondAttribute="centerX"/>
+                            <constraint id="1470" firstItem="1409" firstAttribute="leading" secondItem="1259" secondAttribute="centerX" constant="40" priority="750"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="barButtonSave" destination="1264" id="name-outlet-1264"/>
+                        <outlet property="barButtonCancel" destination="1265" id="name-outlet-1265"/>
+                        <outlet property="imgTeam1Player1" destination="1276" id="name-outlet-1276"/>
+                        <outlet property="lblNameTeam1Player1" destination="1321" id="name-outlet-1321"/>
+                        <outlet property="lblRankTeam1Player1" destination="1322" id="name-outlet-1322"/>
+                        <outlet property="imgTeam1Player2" destination="1410" id="name-outlet-1410"/>
+                        <outlet property="imgTeam2Player2" destination="1446" id="name-outlet-1446"/>
+                        <outlet property="imgTeam2Player1" destination="1428" id="name-outlet-1428"/>
+                        <outlet property="lblNameTeam1Player2" destination="1413" id="name-outlet-1413"/>
+                        <outlet property="lblNameTeam2Player1" destination="1431" id="name-outlet-1431"/>
+                        <outlet property="lblRankTeam1Player2" destination="1415" id="name-outlet-1415"/>
+                        <outlet property="lblRankTeam2Player1" destination="1433" id="name-outlet-1433"/>
+                        <outlet property="lblRankTeam2Player2" destination="1451" id="name-outlet-1451"/>
+                        <outlet property="team1Player1View" destination="1373" id="name-outlet-1373"/>
+                        <outlet property="team1Player2View" destination="1409" id="name-outlet-1409"/>
+                        <outlet property="team2Player1View" destination="1427" id="name-outlet-1427"/>
+                        <outlet property="team2Player2View" destination="1445" id="name-outlet-1445"/>
+                        <segue id="1579" destination="1484" kind="presentation" identifier="SelectPlayerSegue"/>
+                        <outlet property="lblNameTeam2Player2" destination="1449" id="name-outlet-1449"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1144" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1492" y="160"/>
+        </scene>
+        <scene sceneID="1483">
+            <objects>
+                <viewController id="1484" sceneMemberID="viewController" customClass="SelectPlayerViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1481"/>
+                        <viewControllerLayoutGuide type="bottom" id="1482"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1485">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="1488" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="1489">
+                                        <barButtonItem key="rightBarButtonItem" id="1493" systemItem="cancel">
+                                            <connections>
+                                                <action selector="BarButtonCancel_Activated:" destination="1484" id="1494"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <searchBar key="titleView" contentMode="redraw" id="1523" translatesAutoresizingMaskIntoConstraints="NO">
+                                            <rect key="frame" x="12" y="0.0" width="509" height="44"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1495" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1496" rowHeight="60" reuseIdentifier="PlayerCell" customClass="SelectPlayerCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1496" id="1497">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1507" translatesAutoresizingMaskIntoConstraints="NO" image="noImage.png">
+                                                    <rect key="frame" x="20" y="5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint id="1508" firstItem="1507" firstAttribute="height" constant="50"/>
+                                                        <constraint id="1509" firstItem="1507" firstAttribute="width" constant="50"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1513" translatesAutoresizingMaskIntoConstraints="NO">
+                                                    <rect key="frame" x="110" y="5" width="450" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1518" translatesAutoresizingMaskIntoConstraints="NO">
+                                                    <rect key="frame" x="110" y="34.5" width="450" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint id="1511" firstItem="1507" firstAttribute="leading" secondItem="1497" secondAttribute="leading" constant="20"/>
+                                                <constraint id="1512" firstItem="1507" firstAttribute="centerY" secondItem="1497" secondAttribute="centerY"/>
+                                                <constraint id="1515" firstItem="1513" firstAttribute="leading" secondItem="1507" secondAttribute="trailing" constant="40"/>
+                                                <constraint id="1516" firstItem="1497" firstAttribute="trailing" secondItem="1513" secondAttribute="trailing" constant="40"/>
+                                                <constraint id="1517" firstItem="1507" firstAttribute="top" secondItem="1513" secondAttribute="top"/>
+                                                <constraint id="1519" firstItem="1518" firstAttribute="bottom" secondItem="1507" secondAttribute="bottom"/>
+                                                <constraint id="1521" firstItem="1497" firstAttribute="trailing" secondItem="1518" secondAttribute="trailing" constant="40"/>
+                                                <constraint id="1522" firstItem="1518" firstAttribute="leading" secondItem="1507" secondAttribute="trailing" constant="40"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgProfile" destination="1507" id="name-outlet-1507"/>
+                                            <outlet property="lblPlayerUsername" destination="1513" id="name-outlet-1513"/>
+                                            <outlet property="lblPlayerRank" destination="1518" id="name-outlet-1518"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1490" firstItem="1488" firstAttribute="top" secondItem="1481" secondAttribute="bottom"/>
+                            <constraint id="1491" firstItem="1488" firstAttribute="leading" secondItem="1485" secondAttribute="leading"/>
+                            <constraint id="1492" firstItem="1485" firstAttribute="trailing" secondItem="1488" secondAttribute="trailing"/>
+                            <constraint id="1498" firstItem="1495" firstAttribute="top" secondItem="1488" secondAttribute="bottom"/>
+                            <constraint id="1499" firstItem="1495" firstAttribute="leading" secondItem="1485" secondAttribute="leading"/>
+                            <constraint id="1500" firstItem="1485" firstAttribute="trailing" secondItem="1495" secondAttribute="trailing"/>
+                            <constraint id="1501" firstItem="1482" firstAttribute="top" secondItem="1495" secondAttribute="bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="barButtonCancel" destination="1493" id="name-outlet-1493"/>
+                        <outlet property="playersTableView" destination="1495" id="name-outlet-1495"/>
+                        <outlet property="searchBar" destination="1523" id="name-outlet-1523"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1486" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2190" y="154"/>
         </scene>
     </scenes>
     <resources>

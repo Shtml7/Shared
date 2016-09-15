@@ -63,7 +63,7 @@ namespace Scoreboard.iOS
 					imageView.Image = originalImage; // display
 
 					User user = new User();
-					user.name = "ericderegter";
+					user.username = "ericderegter";
 					var byteArray = IOSImageUtil.CompressImage(originalImage);
 					UserCall.UploadImage(byteArray, "jpg", user);
 				}

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Scoreboard.domain;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Scoreboard.communicator
 {
@@ -38,7 +39,7 @@ namespace Scoreboard.communicator
             }
         }
 
-        public static async void createGame(Game game)
+        public static async Task<Game> createGame(Game game)
         {
             using (var client = new HttpClient())
             {
@@ -48,21 +49,21 @@ namespace Scoreboard.communicator
                 {
                     string gameJson = JsonConvert.SerializeObject(game);
                     System.Diagnostics.Debug.WriteLine("Going to post now");
-                    var response = await client.PostAsync("scoreboard/api/games/create", new StringContent(gameJson));
+					var response = await client.PostAsync("scoreboard/api/games", new StringContent(gameJson, Encoding.UTF8, "application/json"));
                     response.EnsureSuccessStatusCode();
 
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonstring = await response.Content.ReadAsStringAsync();
                         System.Diagnostics.Debug.WriteLine("UPLOAD RESULT: " + jsonstring);
+						return JsonConvert.DeserializeObject<Game>(jsonstring);
                     }
-
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("UPLOAD EXCEPTION: " + ex);
-
                 }
+				return null;
             }
 
         }

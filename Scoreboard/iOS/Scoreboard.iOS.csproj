@@ -149,10 +149,31 @@
     <Compile Include="GameTableViewCell.designer.cs">
       <DependentUpon>GameTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableViewSource.cs" />
     <Compile Include="GameDetailViewController.cs" />
     <Compile Include="GameDetailViewController.designer.cs">
       <DependentUpon>GameDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileViewController.cs" />
+    <Compile Include="ProfileViewController.designer.cs">
+      <DependentUpon>ProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeaderboardViewController.cs" />
+    <Compile Include="LeaderboardViewController.designer.cs">
+      <DependentUpon>LeaderboardViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddGameViewController.cs" />
+    <Compile Include="AddGameViewController.designer.cs">
+      <DependentUpon>AddGameViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPlayerViewController.cs" />
+    <Compile Include="SelectPlayerViewController.designer.cs">
+      <DependentUpon>SelectPlayerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datasource\TableViewSource.cs" />
+    <Compile Include="Datasource\SelectPlayerDatasource.cs" />
+    <Compile Include="SelectPlayerCell.cs" />
+    <Compile Include="SelectPlayerCell.designer.cs">
+      <DependentUpon>SelectPlayerCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Datasource\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

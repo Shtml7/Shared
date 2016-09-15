@@ -60,7 +60,7 @@ namespace Scoreboard.iOS
 			else {
 				var byteArray = IOSImageUtil.CompressImage(profileImage.Image);
 				User user = new User();
-				user.name = tfUsername.Text;
+				user.username = tfUsername.Text;
 				UserCall.UploadImage(byteArray, "jpg", user);
 				var plist = NSUserDefaults.StandardUserDefaults;
 				plist.SetString(tfUsername.Text, "username");

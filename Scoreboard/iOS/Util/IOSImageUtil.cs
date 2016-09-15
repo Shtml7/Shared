@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Foundation;
 using UIKit;
 
@@ -30,6 +32,30 @@ namespace Scoreboard.iOS
 				}
 			}
 		}
+
+		//public async static Task<UIImage> FromUrl2(string url)
+		//{
+		//	try
+		//	{
+
+		//		using (var client = new HttpClient())
+		//		{
+		//			using (var response = await client.GetAsync(url))
+		//			{
+		//				response.EnsureSuccessStatusCode();
+		//				//var byteArray = response.Content.ReadAsInputStreamAsync();
+		//				//UIImage image = new UIImage(byteArray.as);
+		//			}
+		//		}
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		System.Diagnostics.Debug.WriteLine("EXCEPTION WHILE LOADING IMAGE FROM URL: " + ex.Message);
+		//		return new UIImage("noImage.png");
+		//	}
+
+
+		//}
 
 		public static void makeRoundImageView(UIImageView imageView)
 		{

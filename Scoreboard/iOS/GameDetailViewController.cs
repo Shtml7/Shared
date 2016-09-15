@@ -41,10 +41,10 @@ namespace Scoreboard.iOS
 			imgTeam2Player1Detail.Image = team2Player1Image;
 			imgTeam2Player2Detail.Image = team2Player2Image;
 
-			lblTeam1Player1.Text = game.team1.player1.name;
-			lblTeam1Player2.Text = game.team1.player2.name;
-			lblTeam2Player1.Text = game.team2.player1.name;
-			lblTeam2Player2.Text = game.team2.player2.name;
+			lblTeam2Player1.Text = game.team2.player1.username;
+			lblTeam2Player2.Text = game.team2.player2.username;
+			lblTeam1Player2.Text = game.team1.player2.username;
+			lblTeam1Player1.Text = game.team1.player1.username;
 
 			lblTeam1Score.Text = game.team1.score.ToString();
 			lblTeam2Score.Text = game.team2.score.ToString();
