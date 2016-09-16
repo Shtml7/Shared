@@ -30,18 +30,24 @@ namespace Scoreboard.Droid
 
             Game game = JsonConvert.DeserializeObject<Game>(jsonMyObject);
 
-            FindViewById<EditText>(Resource.Id.scoreTeam1).SetText(game.team1.score);
-            FindViewById<EditText>(Resource.Id.scoreTeam2).SetText(game.team2.score);
+            FindViewById<EditText>(Resource.Id.scoreTeam1).Text = game.team1.score +"";
+            FindViewById<EditText>(Resource.Id.scoreTeam2).Text = game.team2.score + "";
 
             Button saveEditGameBtn = FindViewById<Button>(Resource.Id.saveScoreBtn);
             saveEditGameBtn.Click += async (object sender, EventArgs e) =>
             {
+                try
+                {
                 game.team1.score = int.Parse(FindViewById<EditText>(Resource.Id.scoreTeam1).Text);
                 game.team2.score = int.Parse(FindViewById<EditText>(Resource.Id.scoreTeam2).Text);
                 await GameCall.updateGame(game);
                 var activity = new Intent(this, typeof(GameActivity));
                 activity.PutExtra("game", jsonMyObject);
                 StartActivity(activity);
+                }catch(Exception ex)
+                {
+                    Toast.MakeText(this, ex.Message, ToastLength.Short).Show();
+                }
             };
         }
     }

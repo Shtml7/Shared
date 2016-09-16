@@ -130,14 +130,14 @@ namespace Scoreboard.Droid
             StartActivity(activity2);
         }
 
-        void HandleTouchUpInside(object sender, EventArgs ea)
+        async void HandleTouchUpInside(object sender, EventArgs ea)
         {
             if (userInput.Text != "")
             {
                 User user = new User();
                 user.username = userInput.Text;
                 byte[] image = ReadFully(imageStream);
-                UserCall.createUser(image, "jpg", user);
+                await UserCall.createUser(image, "jpg", user);
             }
         }
 

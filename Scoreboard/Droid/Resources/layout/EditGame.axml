@@ -12,10 +12,12 @@
         android:textSize="16dp"
         android:textColor="#ffffff" />
     <EditText
-        android:digits="0123456789"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scoreTeam1" />
+        android:id="@+id/scoreTeam1"        
+        android:text="0"
+        android:textSize="16dp"
+        android:textColor="#ffffff"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,10 +25,12 @@
         android:textSize="16dp"
         android:textColor="#ffffff" />
   <EditText
-        android:digits="0123456789"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scoreTeam2" />
+        android:id="@+id/scoreTeam2"
+        android:text="0"
+        android:textSize="16dp"
+        android:textColor="#ffffff"/>
     <Button
         android:text="Save"
         android:layout_width="match_parent"
