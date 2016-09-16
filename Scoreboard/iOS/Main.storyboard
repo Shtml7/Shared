@@ -528,6 +528,14 @@
                                         </constraints>
                                         <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="1888" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                        <rect key="frame" x="180" y="510" width="240" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint id="1889" firstItem="1888" firstAttribute="width" constant="240"/>
+                                            <constraint id="1890" firstItem="1888" firstAttribute="height" constant="128"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint id="906" firstItem="791" firstAttribute="leading" secondItem="838" secondAttribute="leading"/>
@@ -569,6 +577,8 @@
                                     <constraint id="1022" firstItem="992" firstAttribute="trailing" secondItem="838" secondAttribute="trailing"/>
                                     <constraint id="1025" firstItem="998" firstAttribute="leading" secondItem="999" secondAttribute="trailing" constant="20"/>
                                     <constraint id="1026" firstItem="997" firstAttribute="leading" secondItem="994" secondAttribute="trailing" constant="20"/>
+                                    <constraint id="1891" firstItem="1888" firstAttribute="top" secondItem="992" secondAttribute="centerY" constant="40"/>
+                                    <constraint id="1893" firstItem="1888" firstAttribute="centerX" secondItem="838" secondAttribute="centerX"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -597,6 +607,8 @@
                         <outlet property="lblTeam2Player1" destination="998" id="name-outlet-998"/>
                         <outlet property="lblTeam2Player2" destination="997" id="name-outlet-997"/>
                         <segue id="1763" destination="1719" kind="presentation" identifier="editScoreSegue"/>
+                        <segue id="1886" destination="1844" kind="presentation" identifier="livestreamSegue"/>
+                        <outlet property="livestreamView" destination="1888" id="name-outlet-1888"/>
                     </connections>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
@@ -1130,6 +1142,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1721" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2218" y="894"/>
+        </scene>
+        <scene sceneID="1843">
+            <objects>
+                <viewController id="1844" sceneMemberID="viewController" customClass="LivestreamViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1841"/>
+                        <viewControllerLayoutGuide type="bottom" id="1842"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1845">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1846" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2231" y="1601"/>
         </scene>
     </scenes>
     <resources>

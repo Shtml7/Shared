@@ -72,6 +72,10 @@ namespace Scoreboard.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView livestreamView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView scoreOverviewView { get; set; }
 
         [Outlet]
@@ -148,6 +152,11 @@ namespace Scoreboard.iOS
             if (lblTeam2Score != null) {
                 lblTeam2Score.Dispose ();
                 lblTeam2Score = null;
+            }
+
+            if (livestreamView != null) {
+                livestreamView.Dispose ();
+                livestreamView = null;
             }
 
             if (scoreOverviewView != null) {

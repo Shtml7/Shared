@@ -68,6 +68,9 @@ namespace Scoreboard.iOS
 			{
 				IOSImageUtil.makeRoundImageView(imageView);
 			}
+
+			var tapLivestream = new UITapGestureRecognizer(StartLivestream);
+			livestreamView.AddGestureRecognizer(tapLivestream);
 		}
 
 		public override void ViewWillLayoutSubviews()
@@ -100,6 +103,11 @@ namespace Scoreboard.iOS
 				destinationViewController.parent = this;
 				destinationViewController.currentGame = game;
 			}
+		}
+
+		public void StartLivestream()
+		{
+			PerformSegue("livestreamSegue", this);
 		}
 
 	}
