@@ -17,7 +17,7 @@ namespace Scoreboard.Droid
     [Activity(Label = "LiveStreamActivity")]
     public class LiveStreamActivity : Activity, TextureView.ISurfaceTextureListener
     {
-        //Android.Hardware.Camera _camera;
+        Android.Hardware.Camera _camera;
         TextureView _textureView;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,15 +32,15 @@ namespace Scoreboard.Droid
 
         public void OnSurfaceTextureAvailable(SurfaceTexture surface, int width, int height)
         {
-            //_camera = Android.Hardware.Camera.Open();
+            _camera = Android.Hardware.Camera.Open();
 
             _textureView.LayoutParameters =
                    new FrameLayout.LayoutParams(height, width);
 
             try
             {
-               // _camera.SetPreviewTexture(surface);
-                //_camera.StartPreview();
+                _camera.SetPreviewTexture(surface);
+                _camera.StartPreview();
 
             }
             catch (Java.IO.IOException ex)
@@ -51,8 +51,8 @@ namespace Scoreboard.Droid
 
         public bool OnSurfaceTextureDestroyed(SurfaceTexture surface)
         {
-            //_camera.StopPreview();
-           // _camera.Release();
+            _camera.StopPreview();
+            _camera.Release();
 
             return true;
         }
