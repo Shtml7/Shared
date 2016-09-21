@@ -4,6 +4,9 @@ using UIKit;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * Custom cell for displaying other users
+	*/
     public partial class SelectPlayerCell : UITableViewCell
     {
         public UIImageView ImgProfile

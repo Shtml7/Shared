@@ -4,6 +4,9 @@ using UIKit;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * ViewController for registering as a new user
+	*/ 
 	public partial class RegisterModalViewController : UIViewController
 	{
 		UIImagePickerController imagePicker;
@@ -20,18 +23,18 @@ namespace Scoreboard.iOS
 		{
 			base.ViewDidLoad();
 
+			//Create a new imagepicker
 			imagePicker = new UIImagePickerController();
 			imagePicker.FinishedPickingMedia += Handle_FinishedPickingMedia;
 			imagePicker.Canceled += Handle_Canceled;
 			imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
 			imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary);
 
+			//Adds a tapgesture to the imageview
 			UITapGestureRecognizer tapGesture = new UITapGestureRecognizer(TapProfileImageView);
 			profileImage.AddGestureRecognizer(tapGesture);
 
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardHideNotification);
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardShowNotification);
-
+			//Dismiss keyboard when return is pressed
 			tfUsername.ShouldReturn += (tfUsername) =>
 			{
 				((UITextField)tfUsername).ResignFirstResponder();
@@ -41,20 +44,20 @@ namespace Scoreboard.iOS
 			IOSImageUtil.makeRoundImageView(profileImage);
 		}
 
+		//Saves the new user if everything is correctly filled in
 		partial void Button_TouchUpInside(UIButton sender)
 		{
 			if (tfUsername.Text.Trim().Length == 0)
 			{
 				lblWarning.Text = "Enter a your name first";
 			}
-			else {
-
+			else 
+			{
 				handleRegisterUser();
-
 			}
-
 		}
 
+		//Prepares and performs an api call to register the new user
 		public async void handleRegisterUser()
 		{
 			var byteArray = IOSImageUtil.CompressImage(profileImage.Image);
@@ -75,23 +78,16 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		//Handler when the imageview is tapped
 		private void TapProfileImageView()
 		{
-			System.Diagnostics.Debug.WriteLine("Did tap imageview");
-
-			try
-			{
-				PresentViewController(imagePicker, true, null);
-			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine("EXCEPTION: " + ex.Message);
-			}
-
+			PresentViewController(imagePicker, true, null);
 		}
 
+		//Handler for when the user picked an image from the gallery
 		protected void Handle_FinishedPickingMedia(object sender, UIImagePickerMediaPickedEventArgs e)
 		{
+			//Check if the selected file is an image or a video
 			bool isImage = false;
 			switch (e.Info[UIImagePickerController.MediaType].ToString())
 			{
@@ -108,6 +104,8 @@ namespace Scoreboard.iOS
 			Console.WriteLine("URL: " + referenceURL);
 			imageUrl = referenceURL.ToString();
 
+			//If it is an image, select it.
+			//If not then display a message
 			if (isImage)
 			{
 				UIImage originalImage = e.Info[UIImagePickerController.OriginalImage] as UIImage;
@@ -127,44 +125,16 @@ namespace Scoreboard.iOS
 					lblWarning.Text = "Only images are allowed.";
 				}
 			}
+
+			//Dismiss when done
 			imagePicker.DismissModalViewController(true);
 		}
 
+		//Handles the cancel event
 		private void Handle_Canceled(object sender, EventArgs e)
 		{
 			imagePicker.DismissModalViewController(true);
 			lblWarning.Text = "";
-		}
-
-		private void OnKeyboardShowNotification(NSNotification notification)
-		{
-			oldConstraint = topImageConstraint.Constant;
-			System.Diagnostics.Debug.WriteLine("Show me the keyboard");
-			System.Diagnostics.Debug.WriteLine("Screen height:" + UIScreen.MainScreen.Bounds.Height);
-			if (UIScreen.MainScreen.Bounds.Height <= 960/2)
-			{
-				topImageConstraint.Constant = 20;
-				animateLayout();
-			}	
-		}
-
-		private void OnKeyboardHideNotification(NSNotification notification)
-		{
-			System.Diagnostics.Debug.WriteLine("Hide the keyboard");
-			if (UIScreen.MainScreen.Bounds.Height/2 <= 960/2)
-			{
-				topImageConstraint.Constant = oldConstraint;
-				animateLayout();
-			}
-
-		}
-
-		private void animateLayout()
-		{
-			UIView.Animate(1.0, () =>
-			{
-				this.View.LayoutIfNeeded();
-			});
 		}
 	}
 }

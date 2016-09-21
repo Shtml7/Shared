@@ -21,6 +21,7 @@ namespace Scoreboard.iOS
 			base.ViewDidLoad();
 			users = new List<iOSUser>();
 
+			//Get all the users (for better performance, convert to paginated lists)
 			var userList = await UserCall.getUsers();
 			if (userList == null)
 			{
@@ -29,8 +30,9 @@ namespace Scoreboard.iOS
 				alertController.AddAction(UIAlertAction.Create("No thanks", UIAlertActionStyle.Default, alert => System.Diagnostics.Debug.Write("No thanks was selected")));
 				this.PresentViewController(alertController, true, null);
 			}
-			else {
-				System.Diagnostics.Debug.WriteLine("NR OF USERS IN LIST: " + userList.Count);
+			else 
+			{
+				// Get the image and reload the list when done
 				foreach (var user in userList)
 				{
 					UIImage image = await IOSImageUtil.FromUrl(user.imageUrl);

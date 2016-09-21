@@ -7,6 +7,9 @@ using Scoreboard.domain;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * TODO: ViewController for showing the profile of the current user
+	*/ 
     public partial class ProfileViewController : UIViewController
     {
         public ProfileViewController (IntPtr handle) : base (handle)

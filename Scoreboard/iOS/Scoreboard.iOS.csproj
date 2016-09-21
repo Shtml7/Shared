@@ -144,10 +144,6 @@
     <Compile Include="RegisterModalViewController.designer.cs">
       <DependentUpon>RegisterModalViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="GamesViewController.cs" />
     <Compile Include="GamesViewController.designer.cs">
       <DependentUpon>GamesViewController.cs</DependentUpon>

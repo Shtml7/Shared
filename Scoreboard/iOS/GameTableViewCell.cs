@@ -4,6 +4,9 @@ using UIKit;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * Custom cell for displaying the active games
+	*/
     public partial class GameTableViewCell : UITableViewCell
     {
 
@@ -104,6 +107,5 @@ namespace Scoreboard.iOS
 
 		public GameTableViewCell(){
 		}
-
     }
 }

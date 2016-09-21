@@ -6,6 +6,9 @@ using UIKit;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * ViewController for presenting details of the selected game
+	 */ 
     public partial class GameDetailViewController : UIViewController
     {
 		public Game game;
@@ -30,16 +33,13 @@ namespace Scoreboard.iOS
 				this.NavigationItem.SetRightBarButtonItem(barButtonEdit, true);
 			}
 
-
 			lblTeam1Score.Text = game.team1.score.ToString();
 			lblTeam2Score.Text = game.team2.score.ToString();
-
 
 			lblTeam2Player1.Text = game.team2.player1.username;
 			lblTeam2Player2.Text = game.team2.player2.username;
 			lblTeam1Player2.Text = game.team1.player2.username;
 			lblTeam1Player1.Text = game.team1.player1.username;
-
 
 			imageViews = new List<UIImageView>();
 			imageViews.Add(imgTeam1Player1);
@@ -61,7 +61,6 @@ namespace Scoreboard.iOS
 			imgTeam2Player1Detail.Image = team2Player1Image;
 			imgTeam2Player2Detail.Image = team2Player2Image;
 
-
 			System.Diagnostics.Debug.WriteLine("Height: " + scrollView.Bounds.Height + ", Width: " + scrollView.Bounds.Width);
 			System.Diagnostics.Debug.WriteLine("Content Height: " + scrollView.ContentSize.Height + ", Content Width: " + scrollView.ContentSize.Width);
 			System.Diagnostics.Debug.WriteLine("LSV Y + Height: " + (LivestreamView.Frame.Y + LivestreamView.Bounds.Height));
@@ -73,28 +72,21 @@ namespace Scoreboard.iOS
 
 			var tapGuesture = new UITapGestureRecognizer(GotoLivestream);
 			LivestreamView.AddGestureRecognizer(tapGuesture);
-
-
-
 		}
 
-		public override void ViewWillLayoutSubviews()
-		{
-			base.ViewWillLayoutSubviews();
-
-			//System.Diagnostics.Debug.WriteLine("LSV Y + Height: " + contentHeight);
-
-			//scrollView.SetNeedsLayout();
-		}
-
+		/*
+		 * Set the content size of the scrollview so its scrollable
+		*/
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			 var contentHeight = LivestreamView.Frame.Y + LivestreamView.Bounds.Height;
+			var contentHeight = LivestreamView.Frame.Y + LivestreamView.Bounds.Height;
 			scrollView.ContentSize = new CoreGraphics.CGSize(View.Bounds.Width, contentHeight);
-
 		}
 
+		/*
+		 * Sets the new score when edited 
+		*/
 		public void setScore(int scoreTeam1, int scoreTeam2)
 		{
 			lblTeam1Score.Text = scoreTeam1.ToString();
@@ -125,6 +117,5 @@ namespace Scoreboard.iOS
 		{
 			PerformSegue("livestreamSegue", this);
 		}
-
 	}
 }

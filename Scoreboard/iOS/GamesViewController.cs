@@ -7,20 +7,12 @@ using Scoreboard.domain;
 
 namespace Scoreboard.iOS
 {
+	/*
+	 * ViewController for displaying all active games 
+	*/ 
 	public partial class GamesViewController : UIViewController
 	{
 		private List<Game> games;
-		//List<Game> Games
-		//{
-		//	get { return games; }
-		//	set
-		//	{
-		//		games = value;
-		//		System.Diagnostics.Debug.WriteLine("Set datasource");
-		//		gameTableView.Source = new TableViewSource(value, this);
-		//		gameTableView.ReloadData();
-		//	}
-		//}
 		public Game selectedGame;
 		NSUserDefaults plist = NSUserDefaults.StandardUserDefaults;
 
@@ -33,9 +25,8 @@ namespace Scoreboard.iOS
 
 		public override void ViewDidLoad()
 		{
+			//Check if the user is a first time user, if so let him register first.
 			base.ViewDidLoad();
-
-
 			var username = plist.StringForKey("username");
 			System.Diagnostics.Debug.WriteLine("Username: " + username);
 			if (username == null)
@@ -44,6 +35,9 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		/**
+		 * Little performance update, if the list is equally in size (not the best method) do not update the list 
+		*/
 		public async override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
@@ -60,9 +54,11 @@ namespace Scoreboard.iOS
 
 		}
 
+		/**
+		 * Creates a datasource for the listview
+		*/
 		public async void setupDatasource(List<Game> newGames)
 		{
-			
 			var dict = new Dictionary<Game, Dictionary<int, UIImage>>();
 
 			foreach (var game in newGames)
@@ -98,6 +94,7 @@ namespace Scoreboard.iOS
 		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue(segue, sender);
+			//Performance update, passes the already downloaded images to the next viewcontroller
 			if (segue.Identifier == "gameDetailSegue" && selectedGame != null)
 			{
 				var gameDetailController = (GameDetailViewController)segue.DestinationViewController;
@@ -111,6 +108,4 @@ namespace Scoreboard.iOS
 			}
 		}
 	}
-
-
 }

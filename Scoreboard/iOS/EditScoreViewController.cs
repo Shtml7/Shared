@@ -6,6 +6,9 @@ using Scoreboard.communicator;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * ViewController for editing the score 
+	 */
     public partial class EditScoreViewController : UIViewController
     {
 		public GameDetailViewController parent;
@@ -27,6 +30,7 @@ namespace Scoreboard.iOS
 			DismissViewController(true, null);
 		}
 
+		//Checks if the score is valid and saves/updates the score
 		partial void UIBarButtonItem1770_Activated(UIBarButtonItem sender)
 		{
 			try
@@ -45,11 +49,12 @@ namespace Scoreboard.iOS
 			}
 			catch (Exception ex)
 			{
-				lblWarning.Text = "Enter only number less than 10";
+				lblWarning.Text = "Enter only numbers less than 10";
 				System.Diagnostics.Debug.WriteLine("Could not parse score, or the score was greater than 10, EX:" + ex.Message);
 			}
 		}
 
+		//Makes a call to update the score on the server
 		public async void updateScore(int scoreTeam1, int scoreTeam2)
 		{
 			currentGame.team1.score = scoreTeam1;

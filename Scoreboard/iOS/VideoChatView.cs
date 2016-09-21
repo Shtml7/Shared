@@ -8,6 +8,9 @@ using AVFoundation;
 
 namespace Scoreboard.iOS
 {
+	/**
+	 * Class containing everything needed for Videochatting using OpenTok
+	*/
     public partial class VideoChatView : UIView
     {
 
@@ -48,6 +51,9 @@ namespace Scoreboard.iOS
 			
         }
 
+		/**
+		 * Initializes a new instance of the VideoChat view from a Xib file.
+ 		*/
 		public VideoChatView()
 		{
 			// Add in the XIB file
@@ -67,6 +73,10 @@ namespace Scoreboard.iOS
 			this.StatusLabel.Text = String.Empty;
 		}
 
+		/**
+		 * Called when user presses the hangup button
+		 * Closes the current connection
+ 		*/
 		private void HangupButtonHandler(object sender, EventArgs e)
 		{
 			if (_session == null)
@@ -85,6 +95,10 @@ namespace Scoreboard.iOS
 			}
 		}
 
+ 		/**
+		 * Called when pressing the switch button
+		 * Switches camera (front and back)
+		*/
 		private void SwitchButtonHandler(object sender, EventArgs e)
 		{
 			try
@@ -109,11 +123,14 @@ namespace Scoreboard.iOS
 			this.DoConnect();
 		}
 
+ 		/**
+		 * Creates a new session by using the api key and session id and connects to it
+		*/
 		private void DoConnect()
 		{
 			OTError error;
 
-			this.StatusLabel.Text = "Connecting...2";
+			this.StatusLabel.Text = "Connecting...";
 
 			_session = new OTSession(_apiKey, _sessionId, new SessionDelegate(this));
 
@@ -125,6 +142,9 @@ namespace Scoreboard.iOS
 			}
 		}
 
+ 		/**
+		 * Disconnects from the session
+		*/
 		private void DoDisconnect()
 		{
 			this.StatusLabel.Text = String.Empty;
@@ -226,6 +246,9 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		/**
+		 * Event handler when something happens concerning a session (connection created, an error occurred etc.)
+		 */ 
 		private class SessionDelegate : OTSessionDelegate
 		{
 			private VideoChatView _this;
@@ -288,6 +311,9 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		/**
+		 * Event handler when something happens concerning a subscriber (connection created, an error occurred etc.)
+		 */ 
 		private class SubscriberDelegate : OTSubscriberKitDelegate
 		{
 			private VideoChatView _this;
@@ -320,6 +346,9 @@ namespace Scoreboard.iOS
 			}
 		}
 
+		/**
+		 * Event handler when something happens concerning a publisher (connection created, an error occurred etc.)
+		 */ 
 		private class PublisherDelegate : OTPublisherDelegate
 		{
 			private VideoChatView _this;
@@ -372,6 +401,9 @@ namespace Scoreboard.iOS
 		}
     }
 
+	/**
+	 * Custom error
+	 */ 
 	public class OnErrorEventArgs : EventArgs
 	{
 		public OnErrorEventArgs(string s)
