@@ -10,17 +10,17 @@ namespace Scoreboard.iOS
 	public partial class GamesViewController : UIViewController
 	{
 		private List<Game> games;
-		List<Game> Games
-		{
-			get { return games; }
-			set
-			{
-				games = value;
-				System.Diagnostics.Debug.WriteLine("Set datasource");
-				gameTableView.Source = new TableViewSource(value, this);
-				gameTableView.ReloadData();
-			}
-		}
+		//List<Game> Games
+		//{
+		//	get { return games; }
+		//	set
+		//	{
+		//		games = value;
+		//		System.Diagnostics.Debug.WriteLine("Set datasource");
+		//		gameTableView.Source = new TableViewSource(value, this);
+		//		gameTableView.ReloadData();
+		//	}
+		//}
 		public Game selectedGame;
 		NSUserDefaults plist = NSUserDefaults.StandardUserDefaults;
 
@@ -47,19 +47,42 @@ namespace Scoreboard.iOS
 		public async override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
-			if (Games == null)
+			var newGames = await GameCall.GetAllGames();
+			if (games == null)
 			{
-				Games = await GameCall.GetAllGames();
+				setupDatasource(newGames);
 			}
-			else
+			else if (games.Count != newGames.Count)
 			{
-				List<Game> newGames = await GameCall.GetAllGames();
-				if (Games.Count != newGames.Count)
-				{
-					Games = newGames;
-				}
+				setupDatasource(newGames);
 			}
+			games = newGames;
 
+		}
+
+		public async void setupDatasource(List<Game> newGames)
+		{
+			
+			var dict = new Dictionary<Game, Dictionary<int, UIImage>>();
+
+			foreach (var game in newGames)
+			{
+				var imageTeam1Player1 = await IOSImageUtil.FromUrl(game.team1.player1.imageUrl);
+				var imageTeam1Player2 = await IOSImageUtil.FromUrl(game.team1.player2.imageUrl);
+				var imageTeam2Player1 = await IOSImageUtil.FromUrl(game.team2.player1.imageUrl);
+				var imageTeam2Player2 = await IOSImageUtil.FromUrl(game.team2.player2.imageUrl);
+
+				Dictionary<int, UIImage> images = new Dictionary<int, UIImage>();
+				images.Add(1, imageTeam1Player1);
+				images.Add(2, imageTeam1Player2);
+				images.Add(3, imageTeam2Player1);
+				images.Add(4, imageTeam2Player2);
+
+				dict.Add(game, images);
+				System.Diagnostics.Debug.WriteLine("Set datasource");
+				gameTableView.Source = new TableViewSource(newGames, dict, this);
+				gameTableView.ReloadData();
+			}
 		}
 
 		public void showRegisterViewController()
@@ -81,6 +104,10 @@ namespace Scoreboard.iOS
 				gameDetailController.game = this.selectedGame;
 				var id = plist.IntForKey("userId");
 				gameDetailController.isOwnerOfTheGame = selectedGame.owner.id == id;
+				gameDetailController.team1Player1Image = imgTeam1Player1;
+				gameDetailController.team1Player2Image = imgTeam1Player2;
+				gameDetailController.team2Player1Image = imgTeam2Player1;
+				gameDetailController.team2Player2Image = imgTeam2Player2;
 			}
 		}
 	}

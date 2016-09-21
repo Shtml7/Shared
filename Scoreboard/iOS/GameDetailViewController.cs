@@ -10,6 +10,10 @@ namespace Scoreboard.iOS
     {
 		public Game game;
 		public bool isOwnerOfTheGame;
+		public UIImage team1Player1Image;
+		public UIImage team1Player2Image;
+		public UIImage team2Player1Image;
+		public UIImage team2Player2Image;
 
 		private List<UIImageView> imageViews;
 		private UIBarButtonItem barButtonEdit;
@@ -18,7 +22,7 @@ namespace Scoreboard.iOS
         {
 		}
 
-		public async override void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			barButtonEdit = new UIBarButtonItem("Edit", UIBarButtonItemStyle.Plain, (sender, e) => editScore());
 			if (isOwnerOfTheGame && game.isActive)
@@ -35,11 +39,6 @@ namespace Scoreboard.iOS
 			lblTeam2Player2.Text = game.team2.player2.username;
 			lblTeam1Player2.Text = game.team1.player2.username;
 			lblTeam1Player1.Text = game.team1.player1.username;
-
-			var team1Player1Image = await IOSImageUtil.FromUrl(game.team1.player1.imageUrl);
-			var team1Player2Image = await IOSImageUtil.FromUrl(game.team1.player2.imageUrl);
-			var team2Player1Image = await IOSImageUtil.FromUrl(game.team2.player1.imageUrl);
-			var team2Player2Image = await IOSImageUtil.FromUrl(game.team2.player2.imageUrl);
 
 
 			imageViews = new List<UIImageView>();
@@ -61,8 +60,11 @@ namespace Scoreboard.iOS
 			imgTeam1Player2Detail.Image = team1Player2Image;
 			imgTeam2Player1Detail.Image = team2Player1Image;
 			imgTeam2Player2Detail.Image = team2Player2Image;
+
+
 			System.Diagnostics.Debug.WriteLine("Height: " + scrollView.Bounds.Height + ", Width: " + scrollView.Bounds.Width);
 			System.Diagnostics.Debug.WriteLine("Content Height: " + scrollView.ContentSize.Height + ", Content Width: " + scrollView.ContentSize.Width);
+			System.Diagnostics.Debug.WriteLine("LSV Y + Height: " + (LivestreamView.Frame.Y + LivestreamView.Bounds.Height));
 
 			foreach(var imageView in imageViews)
 			{
@@ -71,12 +73,26 @@ namespace Scoreboard.iOS
 
 			var tapGuesture = new UITapGestureRecognizer(GotoLivestream);
 			LivestreamView.AddGestureRecognizer(tapGuesture);
+
+
+
 		}
 
 		public override void ViewWillLayoutSubviews()
 		{
 			base.ViewWillLayoutSubviews();
-			scrollView.ContentSize = new CoreGraphics.CGSize(View.Bounds.Width, View.Bounds.Height);
+
+			//System.Diagnostics.Debug.WriteLine("LSV Y + Height: " + contentHeight);
+
+			//scrollView.SetNeedsLayout();
+		}
+
+		public override void ViewDidLayoutSubviews()
+		{
+			base.ViewDidLayoutSubviews();
+			 var contentHeight = LivestreamView.Frame.Y + LivestreamView.Bounds.Height;
+			scrollView.ContentSize = new CoreGraphics.CGSize(View.Bounds.Width, contentHeight);
+
 		}
 
 		public void setScore(int scoreTeam1, int scoreTeam2)

@@ -44,6 +44,7 @@ namespace Scoreboard.iOS
 			_videoChatView.OnHangup += (sender, e) =>
 				{
 					System.Diagnostics.Debug.WriteLine("OnHangup: User tapped the hangup button.");
+					this.DismissViewController(true, null);
 				};
 
 			_videoChatView.OnError += (sender, e) =>

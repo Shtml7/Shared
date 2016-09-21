@@ -12,11 +12,16 @@ namespace Scoreboard.iOS
 		List<Game> games;
 		GamesViewController owner;
 		string cellIdentifier = "Cell";
+		int userId;
+		Dictionary<Game, Dictionary<int, UIImage>> dict;
 
-		public TableViewSource(List<Game> games, GamesViewController owner)
+		public TableViewSource(List<Game> games, Dictionary<Game, Dictionary<int,UIImage>> dict, GamesViewController owner)
 		{
-			this.games = games;
+			this.games = new List<Game>(dict.Keys);
 			this.owner = owner;
+			this.dict = dict;
+			var plist = NSUserDefaults.StandardUserDefaults;
+			userId = (int)plist.IntForKey("userId");
 		}
 
 		public override nint RowsInSection(UITableView tableview, nint section)
@@ -37,10 +42,10 @@ namespace Scoreboard.iOS
 			cell.LblTeam1Score.Text = game.team1.score.ToString();
 			cell.LblTeam2Score.Text = game.team2.score.ToString();
 
-			var ImgTeam1Player1 = IOSImageUtil.OldFromUrl(game.team1.player1.imageUrl);
-			var ImgTeam1Player2 = IOSImageUtil.OldFromUrl(game.team1.player2.imageUrl);
-			var ImgTeam2Player1 = IOSImageUtil.OldFromUrl(game.team2.player1.imageUrl);
-			var ImgTeam2Player2 = IOSImageUtil.OldFromUrl(game.team2.player2.imageUrl);
+			var ImgTeam1Player1 = dict[game][1];
+			var ImgTeam1Player2 = dict[game][2];
+			var ImgTeam2Player1 = dict[game][3];
+			var ImgTeam2Player2 = dict[game][4];
 
 			cell.ImgTeam1Player1.Image = ImgTeam1Player1;
 			cell.ImgTeam1Player2.Image = ImgTeam1Player2;
@@ -57,8 +62,7 @@ namespace Scoreboard.iOS
 			owner.imgTeam2Player1 = ImgTeam2Player1;
 			owner.imgTeam2Player2 = ImgTeam2Player2;
 
-			var plist = NSUserDefaults.StandardUserDefaults;
-			var userId = (int)plist.IntForKey("userId");
+
 
 			if (game.owner.id == userId)
 			{

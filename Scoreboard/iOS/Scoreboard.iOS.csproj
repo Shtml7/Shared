@@ -206,6 +206,8 @@
     <BundleResource Include="Resources\noImage.png" />
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\star%402x.png" />
+    <BundleResource Include="Resources\Play.png" />
+    <BundleResource Include="Resources\Play%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />

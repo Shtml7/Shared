@@ -326,7 +326,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="838" translatesAutoresizingMaskIntoConstraints="NO" showsVerticalScrollIndicator="NO">
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" id="838" translatesAutoresizingMaskIntoConstraints="NO" showsVerticalScrollIndicator="NO" clipsSubviews="YES">
                                 <rect key="frame" x="0.0" y="64" width="600" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="791" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
@@ -530,9 +530,20 @@
                                     </view>
                                     <view contentMode="scaleToFill" id="1882" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                         <rect key="frame" x="20" y="490" width="560" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0" alpha="1"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1901" translatesAutoresizingMaskIntoConstraints="NO" image="Play.png">
+                                                <rect key="frame" x="184" y="14" width="193" height="99"/>
+                                                <constraints>
+                                                    <constraint id="1910" firstItem="1901" firstAttribute="width" constant="193"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
                                         <constraints>
                                             <constraint id="1887" firstItem="1882" firstAttribute="height" constant="128"/>
+                                            <constraint id="1906" firstItem="1901" firstAttribute="top" secondItem="1882" secondAttribute="top" constant="14"/>
+                                            <constraint id="1907" firstItem="1882" firstAttribute="bottom" secondItem="1901" secondAttribute="bottom" constant="15"/>
+                                            <constraint id="1908" firstItem="1901" firstAttribute="centerX" secondItem="1882" secondAttribute="centerX"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1167,5 +1178,6 @@
         <image name="User.png" width="25" height="25"/>
         <image name="noImage.png" width="500" height="500"/>
         <image name="star.png" width="99" height="102"/>
+        <image name="Play.png" width="25" height="25"/>
     </resources>
 </document>
