@@ -34,52 +34,61 @@ namespace Scoreboard.Droid
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            // Our code will go here
-            //EditText text = FindViewById<EditText>(Resource.Id.text);
+            // get all the games
             games = new List<Game>();
             games = await GameCall.GetAllGames();
 
             ListView listViewGames = FindViewById<ListView>(Resource.Id.games);
-            
+
             // Assign adapter to ListView
             listViewGames.Adapter = new GameAdapter(this, games);
 
             listViewGames.ItemClick += listView_ItemClick;
 
-
+            //Get all the buttons
             Button gamesBtn = FindViewById<Button>(Resource.Id.button1);
             Button leaderboardBtn = FindViewById<Button>(Resource.Id.button2);
             Button profileBtn = FindViewById<Button>(Resource.Id.button3);
             Button newGameBtn = FindViewById<Button>(Resource.Id.newGameBtn);
 
+            //Set clickhandler to button
             gamesBtn.SetBackgroundResource(Resource.Color.green);
             gamesBtn.Click += (object sender, EventArgs e) =>
             {
+                //Select the games tab
+                //Set the colors
                 leaderboardBtn.SetBackgroundResource(Resource.Color.white);
                 gamesBtn.SetBackgroundResource(Resource.Color.green);
                 profileBtn.SetBackgroundResource(Resource.Color.white);
                 listViewGames.Visibility = ViewStates.Visible;
             };
 
-            
+            //Set clickhandler to button
             leaderboardBtn.Click += (object sender, EventArgs e) =>
             {
+                //Select the leaderboard tab
+                //Set the colors
                 leaderboardBtn.SetBackgroundResource(Resource.Color.green);
                 gamesBtn.SetBackgroundResource(Resource.Color.white);
                 profileBtn.SetBackgroundResource(Resource.Color.white);
                 listViewGames.Visibility = ViewStates.Invisible;
             };
 
+            //Set clickhandler to button
             profileBtn.Click += (object sender, EventArgs e) =>
             {
+                //Select the profile tab
+                //Set the colors
                 profileBtn.SetBackgroundResource(Resource.Color.green);
                 gamesBtn.SetBackgroundResource(Resource.Color.white);
                 leaderboardBtn.SetBackgroundResource(Resource.Color.white);
                 listViewGames.Visibility = ViewStates.Invisible;
             };
 
+            //Set clickhandler to button
             newGameBtn.Click += (object sender, EventArgs e) =>
             {
+                //Open the new game activity
                 var activity = new Intent(this, typeof(NewGameActivity));
                 StartActivity(activity);
             };
@@ -87,17 +96,21 @@ namespace Scoreboard.Droid
             LayoutInflater li = LayoutInflater.From(this);
             View promptsView = li.Inflate(Resource.Layout.dialog, null);
 
+            //Create a Dialog to create a new user
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             // set prompts.xml to alertdialog builder
             alertDialogBuilder.SetView(promptsView);
             alertDialogBuilder.SetTitle("Username");
 
+            //Get the view items for the dialog
             userInput = (EditText)promptsView.FindViewById(Resource.Id.dialogText);
             imageView = (ImageView)promptsView.FindViewById(Resource.Id.imageView);
             imageBtn = (Button)promptsView.FindViewById(Resource.Id.imageBtn);
 
-            imageBtn.Click += delegate {
+            //Add clickhandler to open the gallery
+            imageBtn.Click += delegate
+            {
                 Intent = new Intent();
                 Intent.SetType("image/*");
                 Intent.SetAction(Intent.ActionGetContent);
@@ -108,15 +121,17 @@ namespace Scoreboard.Droid
             alertDialogBuilder
                 .SetCancelable(false)
                 .SetPositiveButton("OK", HandleTouchUpInside);
-                  
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.Create();
 
-                // show it
-                alertDialog.Show();
-        
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.Create();
+
+            // show it
+            alertDialog.Show();
         }
-
+        
+        /**
+         * Create a item click handler to activate when clicked on a game
+         */
         private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             //Get our item from the list adapter
@@ -125,11 +140,16 @@ namespace Scoreboard.Droid
             //Make a toast with the item name just to show it was clicked
             Toast.MakeText(this, game.id + " Clicked!", ToastLength.Short).Show();
 
+            //Open game detail activity
             var activity2 = new Intent(this, typeof(GameActivity));
             activity2.PutExtra("game", JsonConvert.SerializeObject(game));
             StartActivity(activity2);
         }
 
+        /**
+         * Create a new user
+         * Send post to server
+         */
         async void HandleTouchUpInside(object sender, EventArgs ea)
         {
             if (userInput.Text != "")
@@ -141,6 +161,9 @@ namespace Scoreboard.Droid
             }
         }
 
+        /**
+         * Get the image which is selected in the gallery
+         */
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
@@ -152,7 +175,10 @@ namespace Scoreboard.Droid
                 imageView.SetImageURI(imageUri);
             }
         }
-
+        
+        /**
+         * Get byte array from a image
+         */
         public static byte[] ReadFully(Stream input)
         {
             using (MemoryStream ms = new MemoryStream())

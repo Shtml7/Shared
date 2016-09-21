@@ -18,18 +18,34 @@ public class UserAdapter : BaseAdapter<User>
         this.context = context;
         this.users = users;
     }
+
+    /**
+    * get a item id from a item
+    */
     public override long GetItemId(int position)
     {
         return position;
     }
+
+    /**
+     * get a user from the position
+     */
     public override User this[int position]
     {
         get { return users[position]; }
     }
+
+    /**
+     * Count the users
+     */
     public override int Count
     {
         get { return users.Count; }
     }
+
+    /**
+     * Create a view with the users
+     */
     public override View GetView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView; // re-use an existing view, if one is available

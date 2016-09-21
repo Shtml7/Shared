@@ -18,18 +18,34 @@ public class GameAdapter : BaseAdapter<Game>
         this.context = context;
         this.games = games;
     }
+
+    /**
+     * get a item id from a item
+     */
     public override long GetItemId(int position)
     {
         return position;
     }
+
+    /**
+     * get a game from the position
+     */
     public override Game this[int position]
     {
         get { return games[position]; }
     }
+
+    /**
+     * Count the games
+     */
     public override int Count
     {
         get { return games.Count; }
     }
+
+    /**
+     * Create a view with the games
+     */
     public override View GetView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView; // re-use an existing view, if one is available
@@ -43,6 +59,9 @@ public class GameAdapter : BaseAdapter<Game>
         return view;
     }
 
+    /**
+     * Creates a bitmap from a url
+     */
     private Bitmap GetImageBitmapFromUrl(string url)
     {
         Bitmap imageBitmap = null;

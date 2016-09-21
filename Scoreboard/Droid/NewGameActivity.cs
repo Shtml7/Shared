@@ -27,9 +27,11 @@ namespace Scoreboard.Droid
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.NewGame);
-            // Create your application here
+
+            // Get all the users from the server
             users = await UserCall.getUsers();
 
+            //Set click to imageView to set user
             ImageView newTeam1Player1Image = FindViewById<ImageView>(Resource.Id.newTeam1Player1Image);
             newTeam1Player1Image.SetImageResource(Resource.Mipmap.noImage);
             newTeam1Player1Image.Click += (object sender, EventArgs e) =>
@@ -38,6 +40,7 @@ namespace Scoreboard.Droid
                 createAlert();
             };
 
+            //Set click to imageView to set user
             ImageView newTeam1Player2Image = FindViewById<ImageView>(Resource.Id.newTeam1Player2Image);
             newTeam1Player2Image.SetImageResource(Resource.Mipmap.noImage);
             newTeam1Player2Image.Click += (object sender, EventArgs e) =>
@@ -46,6 +49,7 @@ namespace Scoreboard.Droid
                 createAlert();
             };
 
+            //Set click to imageView to set user
             ImageView newTeam2Player1Image = FindViewById<ImageView>(Resource.Id.newTeam2Player1Image);
             newTeam2Player1Image.SetImageResource(Resource.Mipmap.noImage);
             newTeam2Player1Image.Click += (object sender, EventArgs e) =>
@@ -54,6 +58,7 @@ namespace Scoreboard.Droid
                 createAlert();
             };
 
+            //Set click to imageView to set user
             ImageView newTeam2Player2Image = FindViewById<ImageView>(Resource.Id.newTeam2Player2Image);
             newTeam2Player2Image.SetImageResource(Resource.Mipmap.noImage);
             newTeam2Player2Image.Click += (object sender, EventArgs e) =>
@@ -62,22 +67,29 @@ namespace Scoreboard.Droid
                 createAlert();
             };
 
+            //Create a new game
             game = new Game();
             game.team1 = new Team();
             game.team2 = new Team();
+
 
             Button createGame = FindViewById<Button>(Resource.Id.createGameBtn);
             createGame.Click += async (object sender, EventArgs e) =>
             {
                 if (game.team1.player1 != null && game.team2.player1 != null)
                 {
+                    //Create a new game
                     await GameCall.createGame(game);
+                    //Open main activity
                     var activity = new Intent(this, typeof(MainActivity));
                     StartActivity(activity);
                 }
             };
          }
 
+        /**
+         * Create Alert with all users
+         */
         public void createAlert()
         {
             LayoutInflater li = LayoutInflater.From(this);
@@ -91,6 +103,7 @@ namespace Scoreboard.Droid
             ListView listView = (ListView)promptsView.FindViewById(Resource.Id.users);
             listView.Adapter = new UserAdapter(this, users);
 
+            //Set click handler
             listView.ItemClick += listView_ItemClick;
             
             // create alert dialog
@@ -100,6 +113,9 @@ namespace Scoreboard.Droid
             alertDialog.Show();
         }
 
+        /**
+         * Create clickhandler to click a user
+         */
         private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             //Get our item from the list adapter
@@ -108,6 +124,7 @@ namespace Scoreboard.Droid
             //Make a toast with the item name just to show it was clicked
             Toast.MakeText(this, user.username + " Clicked!", ToastLength.Short).Show();
 
+            //Switch on which user is clicked
             switch (clicked)
             {
                 case 1:
@@ -135,6 +152,9 @@ namespace Scoreboard.Droid
             }
         }
 
+        /**
+        * Creates a bitmap from a url
+        */
         private Bitmap GetImageBitmapFromUrl(string url)
         {
             Bitmap imageBitmap = null;

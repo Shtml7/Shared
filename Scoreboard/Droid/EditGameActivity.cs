@@ -26,23 +26,32 @@ namespace Scoreboard.Droid
 
             SetContentView(Resource.Layout.EditGame);
 
+            //Get the game which is send from the other view
             jsonMyObject = Intent.GetStringExtra("game");
 
+            //Deserialize String to Game
             Game game = JsonConvert.DeserializeObject<Game>(jsonMyObject);
 
+            //Set the score of the teams
             FindViewById<EditText>(Resource.Id.scoreTeam1).Text = game.team1.score + "";
             FindViewById<EditText>(Resource.Id.scoreTeam2).Text = game.team2.score + "";
 
+            //Set clickhandler on save button
             Button saveEditGameBtn = FindViewById<Button>(Resource.Id.saveScoreBtn);
             saveEditGameBtn.Click += async (object sender, EventArgs e) =>
             {
                 try
                 {
+                    //Parse the string score to int
                     game.team1.score = int.Parse(FindViewById<EditText>(Resource.Id.scoreTeam1).Text);
                     game.team2.score = int.Parse(FindViewById<EditText>(Resource.Id.scoreTeam2).Text);
+
+                    //Update the game with te new score
                     await GameCall.updateGame(game);
+
+                    //Redirect to GameActivity with the new Game
                     var activity = new Intent(this, typeof(GameActivity));
-                    activity.PutExtra("game", jsonMyObject);
+                    activity.PutExtra("game", JsonConvert.SerializeObject(game));
                     StartActivity(activity);
                 }
                 catch (Exception ex)

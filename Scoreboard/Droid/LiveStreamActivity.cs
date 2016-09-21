@@ -17,6 +17,7 @@ namespace Scoreboard.Droid
     [Activity(Label = "LiveStreamActivity")]
     public class LiveStreamActivity : Activity, TextureView.ISurfaceTextureListener
     {
+        //Deprecated Camera
         Android.Hardware.Camera _camera;
         TextureView _textureView;
 
@@ -32,6 +33,7 @@ namespace Scoreboard.Droid
 
         public void OnSurfaceTextureAvailable(SurfaceTexture surface, int width, int height)
         {
+            //opens the hardware camers
             _camera = Android.Hardware.Camera.Open();
 
             _textureView.LayoutParameters =
