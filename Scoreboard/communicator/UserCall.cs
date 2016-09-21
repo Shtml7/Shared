@@ -13,19 +13,27 @@ namespace Scoreboard
 	{
 		private static string baseUrl = "http://77.175.219.85:9090/";
 
-		public static async Task<List<User>> getUsers()
+        /**
+         * Get all the users from the server
+         * Returns a list with users
+         */
+        public static async Task<List<User>> getUsers()
 		{
 			using (var client = new HttpClient())
 			{
 				try
 				{
-					client.BaseAddress = new Uri(baseUrl);
+                    //Set the headers for the call
+                    client.BaseAddress = new Uri(baseUrl);
 					client.DefaultRequestHeaders.Accept.Clear();
 					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-					HttpResponseMessage response = await client.GetAsync("scoreboard/api/users");
+                    //Create a get call
+                    HttpResponseMessage response = await client.GetAsync("scoreboard/api/users");
 					List<User> user = null;
-					response.EnsureSuccessStatusCode();
+
+                    //Get a response from the server
+                    response.EnsureSuccessStatusCode();
 					string jsonResponse = await response.Content.ReadAsStringAsync();
 					System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
 					user = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
@@ -39,6 +47,9 @@ namespace Scoreboard
 			}
 		}
 
+        /**
+         * Create a user with a image and username
+         */
 		public static async Task<int> createUser(byte[] data, String ext, User user)
 		{
 			using (var client = new HttpClient())
@@ -47,6 +58,7 @@ namespace Scoreboard
 
 				try
 				{
+                    //Create a multipart for the image upload 
 					var multi = new MultipartFormDataContent();
 					var imageContent = new StreamContent(new MemoryStream(data));
 
@@ -59,14 +71,17 @@ namespace Scoreboard
 						imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
 					}
 
+                    //Add some headers for the multipart
 					multi.Add(imageContent, "file");
 					multi.Add(new StringContent(user.username), "name");
 					multi.Add(new StringContent(ext), "extension");
 
+                    //Create a post call
 					System.Diagnostics.Debug.WriteLine("Going to post now");
 					var response = await client.PostAsync("scoreboard/api/users/upload", multi);
 					response.EnsureSuccessStatusCode();
 
+                    //Get response from the server
 					if (response.IsSuccessStatusCode)
 					{
 						var jsonstring = await response.Content.ReadAsStringAsync();
@@ -85,18 +100,25 @@ namespace Scoreboard
 
 		}
 
-		public static async Task<User> getUserWithid(int id)
+        /**
+         * Get a user by a id
+         */
+        public static async Task<User> getUserWithid(int id)
 		{
 			using (var client = new HttpClient())
 			{
 				try
 				{
-					client.BaseAddress = new Uri(baseUrl);
+                    //Set the headers for the call
+                    client.BaseAddress = new Uri(baseUrl);
 					client.DefaultRequestHeaders.Accept.Clear();
 					client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-					HttpResponseMessage response = await client.GetAsync("scoreboard/api/users/" + id);
-					if (response.IsSuccessStatusCode)
+                    //Create get call
+                    HttpResponseMessage response = await client.GetAsync("scoreboard/api/users/" + id);
+
+                    //Response from the server
+                    if (response.IsSuccessStatusCode)
 					{
 						string jsonResponse = await response.Content.ReadAsStringAsync();
 						System.Diagnostics.Debug.WriteLine("RESPONSE: " + jsonResponse);
